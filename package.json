@@ -1,9 +1,9 @@
 {
-  "name": "jt-js-defs",
+  "name": "jtree-definitions",
   "version": "1.0.0",
   "description": "common javascript utils",
-  "main": "build/jt-js-defs.js",
-  "repository": "https://github.com/lancetipton/jt-js-defs.git",
+  "main": "build/jtree-definitions.js",
+  "repository": "https://github.com/lancetipton/jtree-definitions.git",
   "author": "lancetipton <lancetipton04@gmail.com>",
   "license": "MIT",
   "scripts": {
