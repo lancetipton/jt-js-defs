@@ -4,7 +4,6 @@ import { Item } from '../../components'
 import Cleave from 'cleave.js'
 import { clearObj, logData, isFunc } from 'jsUtils'
 import { 
-  noId,
   updateParentConstruct,
   addCustomEvents,
   addAllowedConfigOpts,

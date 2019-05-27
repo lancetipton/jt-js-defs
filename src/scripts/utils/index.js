@@ -1,16 +1,6 @@
 import { isFunc, logData, clearObj } from 'jsUtils'
 import { Values } from '../constants'
 
-export const typesOverride = (typeInstance, config) => {
-  if(!config) return null
-
-  Object.entries(Values.TYPE_OVERWRITE).map(([ key, type ]) => (
-    typeof config[key] === type &&
-      typeInstance[key] !== config[key] &&
-      (typeInstance[key] = config[key])
-  ))
-}
-
 /**
  * Loop through the schema, from the bottom up
  * Updates the Heights of the parents to ensure all content can be seen
@@ -28,9 +18,6 @@ export const updateParentHeights = (schema, updateHeight, offset=0) => {
   schema.parent && updateParentHeights(schema.parent, newHeight)
 }
 
-export const noId = e => (
-  logData(`Element id not found from event`, e, 'error') || false
-)
 
 export const updateParentConstruct = (config, parent) => {
   Object.entries(Values.PARENT_OVERWRITE).map(([ key, type ]) => {
@@ -62,9 +49,7 @@ export const callEditor = (e, update, usrEvent, type, Editor) => {
 
 export const shouldDoDefault = (e, update, Editor, userEvent) => {
   const id = e.currentTarget.getAttribute(Values.DATA_TREE_ID)
-  return !id
-    ? noId()
-    : userEvent && userEvent(e, update, id, Editor) === false || id
+  return id && userEvent && userEvent(e, update, id, Editor) === false || id
 }
 
 export const updateValue = (update, input, value) => {
