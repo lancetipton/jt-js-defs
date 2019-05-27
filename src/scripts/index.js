@@ -21,7 +21,6 @@ const subTypes = {
   string: stringSubTypes,
 }
 
-
 export default {
   BaseType,
   types,
