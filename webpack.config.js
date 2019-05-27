@@ -4,9 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 
-const libraryName = 'jTJsDefs'
+const libraryName = 'jt-js-defs'
 const ENV_MODE = process.env.ENV
-const outputFile = '.min.js'
+const outputFile = '.js'
 const paths = [ './build' ]
 
 module.exports = {
