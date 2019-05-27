@@ -1,4 +1,5 @@
 import { isFunc, logData, clearObj } from 'jsUtils'
+import { Values } from '../constants'
 
 export const typesOverride = (typeInstance, config) => {
   if(!config) return null
