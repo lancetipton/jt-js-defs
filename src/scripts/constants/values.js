@@ -12,7 +12,7 @@ export const Values = Object.freeze({
     onCopy: NO_OP,
     onPaste: NO_OP,
     onCut: NO_OP,
-  })
+  }),
   DATA_SCHEMA_KEY: 'data-schema-key',
   DATA_TREE_ID: 'data-tree-id',
   EDIT_CLS: 'item-edit',

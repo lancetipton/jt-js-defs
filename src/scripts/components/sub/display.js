@@ -1,4 +1,3 @@
-import { Values } from 'jTConstants'
 import { elements } from 'elementR'
 
 const getValue = (val, text, prefix='') => {
