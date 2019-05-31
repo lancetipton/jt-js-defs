@@ -1,7 +1,6 @@
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const libraryName = 'jtree-definitions'
 const ENV_MODE = process.env.ENV
