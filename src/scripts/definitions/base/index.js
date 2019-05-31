@@ -95,16 +95,6 @@ class BaseType {
     )
   }
 
-  onDrag = (e, Editor) => {
-    callEditor(
-      e,
-      { mode: Schema.MODES.DRAG },
-      this.userEvents.onDrag,
-      'update',
-      Editor
-    )
-  }
-  
   onDelete = (e, Editor) => {
     callEditor(
       e,
@@ -154,15 +144,7 @@ class BaseType {
     Editor.temp = undefined
     togglePastAction('remove')
   }
-  
-  toggleActions = (e, Edtior) => {
-    e && e.stopPropagation()
-    const dropList = e.currentTarget.parentNode.parentNode.nextSibling
-    if(!dropList) return
 
-    dropList.classList.toggle('open')
-  }
-  
   shouldDoDefault = (...args) => shouldDoDefault(...args)
   
   getActions = (mode, extra) => (
@@ -172,9 +154,7 @@ class BaseType {
         onCopy: this.onCopy,
         onCut: this.onCut,
         onPaste: this.onPaste,
-        onDrag: this.onDrag,
         onDelete: this.onDelete,
-        toggleActions: this.toggleActions,
         ...extra
       }
       : {

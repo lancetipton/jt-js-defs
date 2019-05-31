@@ -1,7 +1,6 @@
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack')
 
 const libraryName = 'jtree-definitions'
@@ -48,5 +47,15 @@ module.exports = {
     alias: {
       jTConstants: path.resolve(__dirname, './src/scripts/constants'),
     },
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          keep_classnames: true,
+          keep_fnames: true,
+        }
+      })
+    ]
   }
 }

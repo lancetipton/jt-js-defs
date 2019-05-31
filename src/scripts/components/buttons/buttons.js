@@ -69,7 +69,6 @@ const buildBtns = (id, props) => {
   return Object
     .keys(btnTypes)
     .reduce((actions, key) => {
-      if(key === 'toggleActions') return actions
       let attrs = {}
       if(key === 'onPaste' && !props.isRoot){
         attrs = props.showPaste

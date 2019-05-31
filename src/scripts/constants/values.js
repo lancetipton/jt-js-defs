@@ -7,7 +7,6 @@ export const Values = Object.freeze({
     onChange: NO_OP,
     onEdit: NO_OP,
     onDelete: NO_OP,
-    onDrag: NO_OP,
     onSave: NO_OP,
     onCopy: NO_OP,
     onPaste: NO_OP,

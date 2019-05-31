@@ -49,6 +49,7 @@ const buildItemKey = ({ showLabel, El, keyAttrs, keyVal }, props) => {
 const buildItemValue = (itemProps, props) => {
   const { showLabel, El, valueAttrs, elValue, children } = itemProps
   if(props && props.type === Schema.EMPTY) valueAttrs.disabled = true
+
   const valEl = El(valueAttrs, isFunc(children) && children(itemProps) || elValue)
   
   return !showLabel

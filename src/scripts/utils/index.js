@@ -1,4 +1,4 @@
-import { isFunc, logData, clearObj } from 'jsUtils'
+import { isFunc } from 'jsUtils'
 import { Values } from '../constants'
 
 /**
