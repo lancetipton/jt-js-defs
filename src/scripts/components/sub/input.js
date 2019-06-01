@@ -1,7 +1,7 @@
 import { Values } from 'jTConstants'
 import { elements } from 'elementR'
 import { label } from './label'
-import { capitalize } from 'jsUtils'
+import { capitalize, isFunc } from 'jsUtils'
 
 const getValue = (val, text) => {
   return text
@@ -23,7 +23,7 @@ const getAttrs = (props, type, keyVal, elVal) => {
   type !== 'key' && props.cleave && (classes += ` ${Values.CLEAVE_CLS}`)
   props.isNumber && (classes += ` ${Values.NUMBER_CLS}`)
   
-  return type === 'key'
+  const attrs = type === 'key'
     ? {
       class: classes,
       type: props.keyType || 'text',
@@ -31,8 +31,7 @@ const getAttrs = (props, type, keyVal, elVal) => {
       [Values.DATA_SCHEMA_KEY]: type,
       name: `key-${props.key}`,
       disabled: props.disabled,
-      onClick: props.onClick || !props.onFocus && `document.execCommand("selectall",null,false)`,
-      onFocus: props.onFocus
+      onClick: props.onClick || !props.onFocus && `this.select()`,
     }
     : {
       class: classes,
@@ -41,9 +40,19 @@ const getAttrs = (props, type, keyVal, elVal) => {
       name: `value-${props.key}`,
       value: elVal,
       disabled: props.disabled,
-      onClick: props.onClick || !props.onFocus && `document.execCommand("selectall",null,false)`,
-      onFocus: props.onFocus
+      onClick: props.onClick || !props.onFocus && `this.select()`,
     }
+
+  // Add dom event handlers
+  Object.entries(props)
+    .map(([ key, value ]) => 
+      !attrs[key] &&
+        Values.DOM_EVENTS.indexOf(key) !== -1 &&
+        isFunc(value) &&
+        (attrs[key] = value)
+    )
+
+  return attrs
 }
 
 /**

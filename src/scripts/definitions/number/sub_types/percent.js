@@ -1,15 +1,7 @@
 import NumberType from '../number'
 import { Item } from '../../../components'
-import { isStr } from 'jsUtils'
-import { Values, Schema } from 'jTConstants'
-import { 
-  updateParentConstruct,
-  addCustomEvents,
-  addAllowedConfigOpts,
-  callEditor,
-  shouldDoDefault,
-  updateValue,
-} from '../../../utils'
+import { suffixSelection, updateSuffix } from '../../../utils'
+import { Values } from 'jTConstants'
 
 class PercentType extends NumberType {
   
@@ -19,25 +11,11 @@ class PercentType extends NumberType {
     return typeof value === 'string' && value.indexOf('%') !== -1
   }
 
-
   constructor(config){
     super(config)
   }
 
-  postfix = '%'
-  
-  checkPostfix = (value, remove) => {
-    if(!value && value !== 0) return
-    value = !isStr(value) && `${value}` || value
-    let cleanVal = value.replace(/\D/g,'')
-    cleanVal = cleanVal.length && value[0] === '-'
-      ? `-${cleanVal}`
-      : cleanVal
-
-    return remove
-      ? cleanVal
-      : cleanVal && cleanVal.length && `${cleanVal}${this.postfix}` || ''
-  }
+  suffix = '%'
   
   onChange = (e, Editor) => {
     const input =  e.target || e.currentTarget
@@ -47,7 +25,7 @@ class PercentType extends NumberType {
 
     // Get the values to compare
     const original = this.original[key]
-    const value = this.checkPostfix(input.value, true)
+    const value = updateSuffix(input.value, this.suffix, true)
     
     if(!value) return input.value = ''
     
@@ -59,10 +37,8 @@ class PercentType extends NumberType {
 
     // If it's a valid number use that instead
     if(!isNaN(numVal)){
-      update.value = this.checkPostfix(numVal, false)
-
-      if(update.value !== input.value)
-        input.value = update.value
+      update.value = updateSuffix(numVal, this.suffix)
+      update.value !== input.value && (input.value = update.value)
     }
     else input.value = ''
 
@@ -71,7 +47,6 @@ class PercentType extends NumberType {
 
     // Check if the input width should be update to match the value
     update.value &&  this.config.expandOnChange !== false && this.setWidth(input)
-
     // Call the userEvent to check if it should be updated
     // Then update the value locally
     // When the save action is called, this value will then be saved to the tree
@@ -80,14 +55,19 @@ class PercentType extends NumberType {
 
   }
   
-  onFocus = (e, Editor) => {
-    console.log(`---------- on focus ----------`)
-    console.log(e.target)
+  updateSelection = (e, Editor) => {
+    const input =  e.target || e.currentTarget
+    const key = input && input.getAttribute(Values.DATA_SCHEMA_KEY)
+    if(!key || !input || !input.value) return
+
+    key !== 'value'
+      ? input.select()
+      : input.setSelectionRange(0, input.value.length - 1)
   }
-  
+
   render = props => {
     const { schema: { id, key, value, mode, matchType, keyType, parent, error } } = props
-    const useVal = this.checkPostfix(value, false)
+    const useVal = updateSuffix(value, this.suffix)
 
     return Item({
       id,
@@ -101,7 +81,11 @@ class PercentType extends NumberType {
       showPaste: props.settings.Editor.hasTemp(),
       keyEdit: !parent || !Array.isArray(parent.value),
       keyType: keyType || 'text',
-      ...this.getActions(mode, { onFocus: this.onFocus })
+      ...this.getActions(mode, {
+        onFocus: this.updateSelection,
+        onClick: this.updateSelection,
+        onKeyUp: suffixSelection.bind(this)
+      })
     })
   }
 

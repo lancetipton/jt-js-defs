@@ -1,8 +1,6 @@
 import { buildTheme } from '../../styles/build_theme'
 import { Values, Schema } from 'jTConstants'
-import { Item } from '../../components'
-import Cleave from 'cleave.js'
-import { clearObj, logData, isFunc } from 'jsUtils'
+import { clearObj } from 'jsUtils'
 import { 
   updateParentConstruct,
   addCustomEvents,
@@ -12,7 +10,6 @@ import {
   updateValue,
   togglePastAction
 } from '../../utils'
-
 
 class BaseType {
 
@@ -147,8 +144,8 @@ class BaseType {
 
   shouldDoDefault = (...args) => shouldDoDefault(...args)
   
-  getActions = (mode, extra) => (
-    mode !== Schema.MODES.EDIT
+  getActions = (mode, extra) => {
+    return mode !== Schema.MODES.EDIT
       ? {
         onEdit: this.onEdit,
         onCopy: this.onCopy,
@@ -163,7 +160,7 @@ class BaseType {
         onCancel: this.onCancel,
         ...extra
       }
-  )
+  }
 
   setWidth = input => (
     input &&

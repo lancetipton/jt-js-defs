@@ -2,17 +2,28 @@ const NO_OP = () => {}
 
 export const Values = Object.freeze({
   CLEAVE_CLS: 'item-cleave',
+  DOM_EVENTS: [
+    'onChange',
+    'onClick',
+    'onFocus',
+    'onBlur',
+    'onKeyDown',
+    'onKeyUp'
+  ],
   CUSTOM_EVENTS: Object.freeze({
+    onBlur: NO_OP,
     onCancel: NO_OP,
     onChange: NO_OP,
     onClick: NO_OP,
-    onFocus: NO_OP,
-    onEdit: NO_OP,
-    onDelete: NO_OP,
-    onSave: NO_OP,
     onCopy: NO_OP,
-    onPaste: NO_OP,
     onCut: NO_OP,
+    onDelete: NO_OP,
+    onEdit: NO_OP,
+    onFocus: NO_OP,
+    onKeyDown: NO_OP,
+    onKeyUp: NO_OP,
+    onPaste: NO_OP,
+    onSave: NO_OP,
   }),
   DATA_SCHEMA_KEY: 'data-schema-key',
   DATA_TREE_ID: 'data-tree-id',

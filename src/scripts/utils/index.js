@@ -1,4 +1,4 @@
-import { isFunc } from 'jsUtils'
+import { isFunc, isStr } from 'jsUtils'
 import { Values } from '../constants'
 
 /**
@@ -76,3 +76,31 @@ export const togglePastAction = type => (
       node && node.classList && node.classList[type](Values.SHOW_PASTE_CLS)
     })
 )
+
+export const updateSuffix = (value, suffix, remove) => {
+  if(!value && value !== 0) return
+  value = !isStr(value) && `${value}` || value
+  let cleanVal = value.replace(/\D/g,'')
+  cleanVal = cleanVal.length && value[0] === '-'
+    ? `-${cleanVal}`
+    : cleanVal
+
+  return remove
+    ? cleanVal
+    : cleanVal && cleanVal.length && `${cleanVal}${suffix}` || ''
+}
+
+export const suffixSelection = function(e, Editor) {
+  const input =  e.target || e.currentTarget
+  const key = input && input.getAttribute(Values.DATA_SCHEMA_KEY)
+  if(!key || key !== 'value' || !input || !input.value) return
+
+  const selection = window.getSelection()
+  const selected = selection && selection.toString()
+
+  return !selected
+    ? input.selectionEnd === input.value.length &&
+        input.setSelectionRange(input.selectionEnd - 1, input.selectionEnd - 1)
+    : selected[selected.length - 1] === this.suffix &&
+        input.setSelectionRange(input.selectionStart, input.selectionEnd - 1)
+}
