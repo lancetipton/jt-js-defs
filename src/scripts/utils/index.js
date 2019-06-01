@@ -52,7 +52,7 @@ export const shouldDoDefault = (e, update, Editor, userEvent) => {
   return id && userEvent && userEvent(e, update, id, Editor) === false || id
 }
 
-export const updateValue = (update, input, value) => {
+export const updateValue = (update, input, value, ) => {
   // Check input type, and if it has the CLEAVE_CLS
   // Which means is should be a number
   if(input.nodeName === 'INPUT' && input.classList.contains(Values.NUMBER_CLS)){

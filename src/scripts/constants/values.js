@@ -5,6 +5,8 @@ export const Values = Object.freeze({
   CUSTOM_EVENTS: Object.freeze({
     onCancel: NO_OP,
     onChange: NO_OP,
+    onClick: NO_OP,
+    onFocus: NO_OP,
     onEdit: NO_OP,
     onDelete: NO_OP,
     onSave: NO_OP,

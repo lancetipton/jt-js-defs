@@ -13,7 +13,7 @@ const { div, i } = elements
  * @param  { string } type - One of key or value
  * @return { object } built options 
  */
-const buildOptions = (props, type) => {
+const buildOptions = (props, type) => {  
   const isEdit = props.mode === Schema.MODES.EDIT
   const showLabel = isEdit && props.showLabel
   const typeEl = props[`${type}El`]

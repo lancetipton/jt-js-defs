@@ -77,8 +77,8 @@ class CleaveType extends BaseType {
         // Checks if it has the cleave class
         // Catches changes for the key input
         !this.cleave && this.checkCleave(schema, input)
-          ? (domNode.oninput = undefined)
-          : (domNode.oninput = this.onChange)
+          ? (input.oninput = undefined)
+          : (input.oninput = this.onChange)
 
         this.config.expandOnChange !== false && this.setWidth(input)
       })

@@ -22,7 +22,7 @@ const getAttrs = (props, type, keyVal, elVal) => {
   let classes = `item-data ${Values.EDIT_CLS}`
   type !== 'key' && props.cleave && (classes += ` ${Values.CLEAVE_CLS}`)
   props.isNumber && (classes += ` ${Values.NUMBER_CLS}`)
-
+  
   return type === 'key'
     ? {
       class: classes,
@@ -31,7 +31,8 @@ const getAttrs = (props, type, keyVal, elVal) => {
       [Values.DATA_SCHEMA_KEY]: type,
       name: `key-${props.key}`,
       disabled: props.disabled,
-      onClick: `document.execCommand("selectall",null,false)`
+      onClick: props.onClick || !props.onFocus && `document.execCommand("selectall",null,false)`,
+      onFocus: props.onFocus
     }
     : {
       class: classes,
@@ -40,7 +41,8 @@ const getAttrs = (props, type, keyVal, elVal) => {
       name: `value-${props.key}`,
       value: elVal,
       disabled: props.disabled,
-      onClick: `document.execCommand("selectall",null,false)`
+      onClick: props.onClick || !props.onFocus && `document.execCommand("selectall",null,false)`,
+      onFocus: props.onFocus
     }
 }
 
