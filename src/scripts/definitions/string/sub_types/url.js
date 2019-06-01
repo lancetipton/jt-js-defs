@@ -14,7 +14,6 @@ class UrlType extends StringType {
     super(config)
   }
 
-
 }
 
 export default UrlType

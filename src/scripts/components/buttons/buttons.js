@@ -1,9 +1,9 @@
-import { er, elements } from 'elementR'
+import { elements } from 'elementR'
 import { Icon } from './icon'
 import { capitalize } from 'jsUtils'
 import { Values, Schema } from 'jTConstants'
 import { selectWrapper, inputWrapper } from '../sub'
-const { div, style, span, option, ul, li } = elements
+const { div, span, option } = elements
 const btnTypes = {
   onEdit: { icon: 'pen', key: 'Edit' },
   onCopy: { icon: 'copy', key: 'Copy' },

@@ -1,11 +1,11 @@
 import { Buttons } from './buttons'
 import { elements } from 'elementR'
-import { isFunc, capitalize } from 'jsUtils'
+import { isFunc } from 'jsUtils'
 import { Values, Schema } from 'jTConstants'
 import * as subComps from './sub'
 import { errorMessage } from './error'
 
-const { div, i } = elements
+const { div } = elements
 
 /**
  * Build the input options based on props.mode and type
@@ -15,7 +15,6 @@ const { div, i } = elements
  */
 const buildOptions = (props, type) => {  
   const isEdit = props.mode === Schema.MODES.EDIT
-  const showLabel = isEdit && props.showLabel
   const typeEl = props[`${type}El`]
   return !isEdit 
     ? subComps.display(props, type)

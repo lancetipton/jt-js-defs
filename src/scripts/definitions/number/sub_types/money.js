@@ -1,5 +1,4 @@
 import NumberType from '../number'
-import { Item } from '../../../components'
 
 class MoneyType extends NumberType {
 
@@ -23,24 +22,8 @@ class MoneyType extends NumberType {
       }
     })
   }
-
-  render = props => {
-    const { schema: { id, key, value, mode, matchType, keyType, parent, error } } = props
-    return Item({
-      id,
-      key,
-      value,
-      mode,
-      error,
-      type: matchType,
-      showLabel: true,
-      cleave: true,
-      showPaste: props.settings.Editor.hasTemp(),
-      keyEdit: !parent || !Array.isArray(parent.value),
-      keyType: keyType || 'text',
-      ...this.getActions(mode)
-    })
-  }
+  
+  isNumber = false
 
 }
 

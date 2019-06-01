@@ -1,5 +1,4 @@
 import NumberType from '../number'
-import { Item } from '../../../components'
 
 class FloatType extends NumberType {
 
@@ -21,25 +20,6 @@ class FloatType extends NumberType {
         numeralDecimalScale: 8,
         ...(config || {}).cleave,
       }
-    })
-  }
-
-  render = props => {
-    const { schema: { id, key, value, mode, matchType, keyType, parent, error } } = props
-    return Item({
-      id,
-      key,
-      value,
-      mode,
-      error,
-      type: matchType,
-      showLabel: true,
-      cleave: true,
-      isNumber: true,
-      showPaste: props.settings.Editor.hasTemp(),
-      keyEdit: !parent || !Array.isArray(parent.value),
-      keyType: keyType || 'text',
-      ...this.getActions(mode)
     })
   }
 

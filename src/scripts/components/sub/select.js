@@ -5,7 +5,6 @@ const getOptProps = (value, elValue) => (
   { value, className: 'item-option', selected: elValue === value }
 )
 
-
 const getChildren = props => (
   props.options && props.options
     .map(option => (

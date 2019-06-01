@@ -1,6 +1,5 @@
-import { er, elements } from 'elementR'
-const { div, span, a, style  } = elements
-
+import { elements } from 'elementR'
+const { span, a  } = elements
 
 export const Icon = (icon, text, extraProps={}) => {
   const lowerText = text && text.toLowerCase()

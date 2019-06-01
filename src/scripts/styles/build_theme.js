@@ -1,7 +1,7 @@
-import stylesReset from './styles_reset.css'
 import base from './base.css'
 import { getTheme, updateTheme } from './theme'
 import { deepMerge } from 'jsUtils'
+
 
 const fillBlocks = (block, theme) => (
   Object
@@ -41,11 +41,10 @@ const buildTheme = settings => {
     : builtTheme
   
   const useStyles = settings.styles
-    ? deepMerge(stylesReset, base, settings.styles)
+    ? deepMerge(base, settings.styles)
     : base
   
   const filled = {
-    ...stylesReset,
     ...fillStyles(useTheme, useStyles)
   }
 

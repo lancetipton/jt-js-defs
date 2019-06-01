@@ -10,7 +10,7 @@ const luhn = cardnumber => {
   let sum = 0
   let alt = false
   digits.map(digit => {
-    if (alt) {
+    if(alt) {
       digit *= 2
       if (digit > 9) digit -= 9
     }
@@ -61,24 +61,8 @@ class CardType extends StringType {
     })
   }
   
-  render = props => {
-    const { schema: { id, key, value, mode, matchType, keyType, parent, error } } = props
-    return Item({
-      id,
-      key,
-      value,
-      mode,
-      error,
-      type: matchType,
-      showLabel: true,
-      cleave: true,
-      showPaste: props.settings.Editor.hasTemp(),
-      keyEdit: !parent || !Array.isArray(parent.value),
-      keyType: keyType || 'text',
-      ...this.getActions(mode)
-    })
-  }
-
+  useCleave = true
+  
 }
 
 export default CardType

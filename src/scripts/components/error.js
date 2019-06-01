@@ -1,4 +1,4 @@
-import { elements, eR } from 'elementR'
+import { elements } from 'elementR'
 const { div, span } = elements
 
 export const errorMessage = error => (

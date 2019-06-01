@@ -1,8 +1,14 @@
 import { elements } from 'elementR'
-import { Row } from './row'
 import { ListHeader } from './list_header'
-const { div, ul, i } = elements
-    
+const { div, ul, li, i } = elements
+
+export const Row = (rowProps, child) => (
+  li({
+      ...rowProps,
+      className: `row${rowProps.className && ' ' + rowProps.className || ''}`
+    }, child)
+)
+
 const checkExtraClass = (org, classes) => (
   typeof classes === 'string'
     ? `${org} ${classes}`

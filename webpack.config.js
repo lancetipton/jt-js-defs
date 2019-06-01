@@ -1,11 +1,14 @@
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const libraryName = 'jtree-definitions'
 const ENV_MODE = process.env.ENV
 const outputFile = '.js'
 const paths = [ './build' ]
+
+const plugins = [ new CleanWebpackPlugin(paths, {}) ]
+process.env.ANAL && plugins.push(new BundleAnalyzerPlugin())
 
 module.exports = {
   mode: ENV_MODE || 'development',
@@ -30,18 +33,10 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-      {
-        test: /\.md$/,
-        use: {
-          loader: 'raw-loader',
-        }
-      },
       { enforce: 'pre', test: /\.(js|css)$/, loader: 'remove-comments-loader' }
     ]
   },
-  plugins: [
-    new CleanWebpackPlugin(paths, {})
-  ],
+  plugins: plugins,
   resolve: {
     alias: {
       jTConstants: path.resolve(__dirname, './src/scripts/constants'),

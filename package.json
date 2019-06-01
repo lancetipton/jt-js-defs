@@ -7,13 +7,13 @@
   "author": "lancetipton <lancetipton04@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "NODE_ENV=test jest --verbose",
-    "dev": "ENV=development webpack --watch --progress",
+    "anal": "ANAL=true ENV=production webpack --mode production",
     "build": "ENV=production webpack --mode production",
-    "clean": "rm -rf yarn.lock && rm -rf node_modules && yarn install --force"
+    "clean": "rm -rf yarn.lock && rm -rf node_modules && yarn install --force",
+    "dev": "ENV=development webpack --watch --progress",
+    "test": "NODE_ENV=test jest --verbose"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
@@ -25,19 +25,21 @@
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-import-css-to-jss": "^3.1.1",
-    "cleave.js": "^1.4.10",
-    "elementR": "git+https://github.com/lancetipton/Element-R.git",
-    "jsUtils": "git+https://github.com/lancetipton/jsUtils.git",
     "clean-webpack-plugin": "^1.0.0",
+    "cleave.js": "^1.4.10",
+    "compression-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "core-js": "^3.1.2",
+    "elementR": "git+https://github.com/lancetipton/Element-R.git",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.7.1",
+    "jsUtils": "git+https://github.com/lancetipton/jsUtils.git",
     "raw-loader": "^2.0.0",
     "remove-comments-loader": "^0.1.2",
     "terser-webpack-plugin": "^1.3.0",
     "webpack": "^4.27.1",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.1.2"
   },
   "jest": {

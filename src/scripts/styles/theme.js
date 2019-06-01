@@ -15,24 +15,12 @@ let DEF_COLORS = {
   orange: '#FA7807',
 
   white: '#FFFFFF',
-  white1: '#FEFEFE',
-  white2: '#FCFCFE',
-  white3: '#FBFBFD',
-  white4: '#FAFAFC',
+  white1: '#FCFCFE',
   gray: '#F5F5FA',
   gray1: '#D6D6DB',
-  gray2: '#BAB8BF',
-  gray3: '#99999C',
-  gray4: '#7A7A7D',
-  gray5: '#5C5C5E',
-  gray6: '#3D3D3E',
-  gray7: '#1F1F1F',
-  black: '#131313',
-  black1: '#14171C',
-
-  shadow1: 'box-shadow: 3px 3px 0px 0px rgba(216, 215, 220, 1)',
-  shadow2: 'box-shadow: 3px 3px 4px -4px rgba(103, 100, 114, 0.5)',
-
+  gray2: '#99999C',
+  gray3: '#3D3D3E',
+  gray4: '#1F1F1F',
 }
 
 const buildUseConf = update => {
@@ -131,14 +119,14 @@ export const getTheme = () => ({
 
   // Item background color
   itemEditBackColor: DEF_COLORS.white,
-  itemHoverBackColor: DEF_COLORS.white2,
+  itemHoverBackColor: DEF_COLORS.white1,
   itemOpenBackColor: DEF_COLORS.gray,
   itemActiveBackColor: DEF_COLORS.gray,
 
   // Buttons states
   passiveBtnOpacity: '0',
   activeBtnOpacity: '1',
-  passiveBtnColor: DEF_COLORS.gray6,
+  passiveBtnColor: DEF_COLORS.gray3,
   activeEditColor: DEF_COLORS.lime,
   activeCopyColor: DEF_COLORS.blue,
   activeDragColor: DEF_COLORS.orange,
@@ -148,14 +136,14 @@ export const getTheme = () => ({
   activeDeleteColor: DEF_COLORS.red,
   
   // Types
-  typeLabelColor: DEF_COLORS.gray3,
+  typeLabelColor: DEF_COLORS.gray2,
   
   // Inputs
   inputEditBorder:  `1px solid ${DEF_COLORS.gray1}`,
   inputFocusBorderBottom: `1px solid ${DEF_COLORS.green}`,
   inputErrorBorder: `1px solid ${DEF_COLORS.red}`,
   inputDisabledBackColor: DEF_COLORS.gray1,
-  inputDisabledColor: DEF_COLORS.gray3,
+  inputDisabledColor: DEF_COLORS.gray2,
   inputDisabledOpacity: 0.5,
   inputDisabledCursor: 'not-allowed',
 

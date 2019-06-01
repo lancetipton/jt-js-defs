@@ -1,5 +1,5 @@
 import { Buttons, Icon } from '../buttons'
-import { elements, eR } from 'elementR'
+import { elements } from 'elementR'
 import { capitalize } from 'jsUtils'
 import { Values, Schema } from 'jTConstants'
 import * as subComps from '../sub'
@@ -18,7 +18,7 @@ const buildKeyEl = ({ showLabel, El, keyAttrs, keyVal }) => {
 }
 
 const buildHeaderKey = (props) => {
-  const { key, keyType, mode, keyText } = props
+  const { key, keyType, keyText } = props
   const text = `${keyText || key} `
 
   return props.mode !== Schema.MODES.EDIT

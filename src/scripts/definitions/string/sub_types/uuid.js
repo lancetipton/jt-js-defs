@@ -1,6 +1,4 @@
 import StringType from '../string'
-import { Item } from '../../../components'
-import { Values, Schema } from 'jTConstants'
 
 class UuidType extends StringType {
 
@@ -27,6 +25,8 @@ class UuidType extends StringType {
       }
     })
   }
+  
+  useCleave = true
 
 }
 
