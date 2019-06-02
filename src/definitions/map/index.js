@@ -1,2 +1,2 @@
-export * from './map'
-export * from './sub_types'
+import MapType from  './map'
+export default MapType

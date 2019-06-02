@@ -1,2 +1,2 @@
-export * from  './number'
-export * from './sub_types'
+import NumberType from  './number'
+export default NumberType

@@ -1,2 +1,2 @@
-export * from './collection'
-export * from './sub_types'
+import CollectionType from  './collection'
+export default CollectionType

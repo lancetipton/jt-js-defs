@@ -1,1 +1,2 @@
-export * from './empty'
+import EmptyType from  './empty'
+export default EmptyType

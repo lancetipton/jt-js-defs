@@ -1,2 +1,2 @@
-export * from  './string'
-export * from './sub_types'
+import StringType from  './string'
+export default StringType

@@ -1,1 +1,2 @@
-export * from './boolean'
+import BooleanType from  './boolean'
+export default BooleanType
