@@ -1,1 +1,1 @@
-const jsdom = require('jsdom').jsdom
+const jsdom = require('./node_modules/jsdom').jsdom

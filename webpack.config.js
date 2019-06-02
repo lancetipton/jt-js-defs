@@ -1,29 +1,32 @@
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CleanWebpackPlugin = require('./node_modules/clean-webpack-plugin')
+const TerserPlugin = require('./node_modules/terser-webpack-plugin/dist/cjs')
+const BundleAnalyzerPlugin = require('./node_modules/webpack-bundle-analyzer/lib').BundleAnalyzerPlugin;
 const libraryName = 'jtree-definitions'
-const ENV_MODE = process.env.ENV
+const NODE_ENV = process.env.NODE_ENV
+const isDev = NODE_ENV === 'development'
+const buildPath = 'build'
 const outputFile = '.js'
+const outputPath = path.resolve(__dirname, buildPath)
 const paths = [ './build' ]
 
 const plugins = [ new CleanWebpackPlugin(paths, {}) ]
 process.env.ANAL && plugins.push(new BundleAnalyzerPlugin())
 
 module.exports = {
-  mode: ENV_MODE || 'development',
-  devtool: ENV_MODE === 'production' ? 'source-map' : 'inline-source-map',
+  mode: NODE_ENV || 'development',
+  devtool: NODE_ENV === 'production' ? 'source-map' : 'inline-source-map',
   entry: {
     [libraryName]: './src/scripts/index.js'
   },
   output: {
-    path: path.resolve(__dirname, './build'),
-    filename: '[name]' + outputFile,
+    path: outputPath,
+    filename: `[name]${outputFile}`,
     library: '[name]',
     libraryTarget: 'umd',
     umdNamedDefine: true,
     globalObject: "(typeof self !== 'undefined' ? self : this)",
-    chunkFilename: '[name].bundle.js',
+    chunkFilename: '[name].js',
   },
   module: {
     rules: [
@@ -44,6 +47,7 @@ module.exports = {
     },
   },
   optimization: {
+    nodeEnv: NODE_ENV,
     splitChunks: {
       chunks: 'all',
       maxInitialRequests: Infinity,
@@ -52,12 +56,8 @@ module.exports = {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name(module) {
-            // get the name. E.g. node_modules/packageName/not/this/part.js
-            // or node_modules/packageName
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-
-            // npm package names are URL-safe, but some servers don't like @ symbols
-            return `${packageName.replace('@', '')}`;
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+            return `${packageName.replace('@', '')}`
           },
         },
       },
@@ -67,7 +67,7 @@ module.exports = {
         terserOptions: {
           keep_classnames: true,
           keep_fnames: true,
-          sourceMap: true,
+          sourceMap: isDev,
         }
       })
     ]
