@@ -15,18 +15,20 @@
   ],
   "scripts": {
     "anal": "ANAL=true ENV=production webpack --mode production",
-    "build": "yarn build:clean && yarn build:esm && yarn build:cjs && yarn build:webpack",
+    "build": "yarn build:clean && yarn build:webpack",
     "build:clean": "rm -rf ./esm && rm -rf ./cjs && rm -rf ./build",
     "build:esm": "babel --delete-dir-on-start -d esm/ src/",
     "build:cjs": "babel --delete-dir-on-start --env-name cjs -d cjs/ src/",
+    "build:modules": "yarn build:esm && yarn build:cjs",
     "build:webpack": "rm -rf ./build && ENV=production webpack --mode production",
     "clean": "rm -rf yarn.lock && rm -rf node_modules && yarn install --force",
-    "dev": "ENV=development webpack --watch --progress",
+    "dev": "yarn build:clean && ENV=development webpack --watch --progress",
     "test": "NODE_ENV=test jest --verbose",
     "postinstall": "postinstall-build build"
   },
   "dependencies": {
-    "postinstall-build": "^5.0.3"
+    "postinstall-build": "^5.0.3",
+    "webpack-shell-plugin": "https://github.com/cdeutsch/webpack-shell-plugin.git#bee537d"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

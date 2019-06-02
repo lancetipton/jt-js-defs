@@ -1,4 +1,5 @@
 import StringType from '../string'
+import { isStr } from 'jsUtils'
 
 const luhn = (arr => {
   return ccNum => {
@@ -21,12 +22,12 @@ class CardType extends StringType {
 
   static priority = 2
   static defaultValue = ''
-  static eval = value => luhn(value.replace(/ /g, ''))
+  static eval = value => isStr(value) && luhn(value.replace(/ /g, ''))
   
   static error = args => {
     if(args.prop !== 'value') return args.message || 'Error, Invalid data!'
 
-    return `Invalid card number, ensure the number matches the card number.`
+    return `Invalid card number. Ensure the entered number matches the card number.`
   }
   
   constructor(config){

@@ -9,8 +9,17 @@ const buildPath = 'build'
 const outputFile = '.js'
 const outputPath = path.resolve(__dirname, buildPath)
 const paths = [ './build' ]
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
-const plugins = [ new CleanWebpackPlugin(paths, {}) ]
+
+const plugins = [
+  new CleanWebpackPlugin(paths, {}),
+  new WebpackShellPlugin({
+    // onBuildStart: [ 'yarn build:modules' ],
+    onBuildEnd: [ 'yarn build:modules' ],
+    dev: false
+  })
+]
 process.env.ANAL && plugins.push(new BundleAnalyzerPlugin())
 
 module.exports = {

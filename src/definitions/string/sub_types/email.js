@@ -1,5 +1,5 @@
 import StringType from '../string'
-
+import { isStr } from 'jsUtils'
 class EmailType extends StringType {
 
   static priority = 2
@@ -9,13 +9,13 @@ class EmailType extends StringType {
   static error = args => {
     if(args.prop !== 'value') return args.message || 'Error, Invalid data!'
 
-    return `Invalid email. Format should follow this example: me@example.com`
+    return `Invalid Email. Please enter a valid email address!`
   }
   
   static eval = value => {
     if (
       !value ||
-      typeof value !== 'string' ||
+      !isStr(value) ||
       value.indexOf('@') === -1 ||
       value.indexOf('.') === -1
     )

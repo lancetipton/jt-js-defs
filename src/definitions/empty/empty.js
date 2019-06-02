@@ -30,7 +30,10 @@ class EmptyType extends BaseType {
 
     value &&  this.config.expandOnChange !== false && this.setWidth(input)
     const update = { matchType: value }
-
+    
+    if(this.updated.key && this.updated.key !== this.original.key)
+      update.key = this.updated.key
+    
     this.userEvents.onChange(e, update, this.original.id, Editor) !== false &&
       this.original.id && 
       Editor.update(this.original.id, update)

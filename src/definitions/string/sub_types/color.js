@@ -1,5 +1,5 @@
 import StringType from '../string'
-
+import { isStr } from 'jsUtils'
 class ColorType extends StringType {
 
   static priority = 2
@@ -12,6 +12,8 @@ class ColorType extends StringType {
   }
   
   static eval = value => {
+    if (!value || !isStr(value)) return false
+    
     return  Boolean(/^#(?:(?:[A-F0-9]{2}){3,4}|[A-F0-9]{3})$/i.test(value))
   }
 

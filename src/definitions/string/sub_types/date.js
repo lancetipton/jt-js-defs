@@ -1,5 +1,5 @@
 import StringType from '../string'
-
+import { isStr } from 'jsUtils'
 class DateType extends StringType {
 
   static priority = 2
@@ -16,10 +16,12 @@ class DateType extends StringType {
     const fullMonth = month.length === 2 && month || `0${month}`
     const format = `${fullDay}-${fullMonth}-${date.getFullYear()}`
 
-    return `Invalid date. Format must should be ${format} (Day-Month-Year)`
+    return `Invalid date. Date format should match ${format} (Day-Month-Year)`
   }
   
   static eval = value => {
+    if(!isStr(value)) return false
+    
     const dateSplit = value.split('-')
     if(dateSplit.length !== '3') return false
     return dateSplit.reduce(valid, date => {

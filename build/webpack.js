@@ -1,0 +1,1 @@
+(("undefined"!=typeof self?self:this).webpackJsonp_name_=("undefined"!=typeof self?self:this).webpackJsonp_name_||[]).push([[5],{96:function(e,n){var t;t=function(){return this}();try{t=t||new Function("return this")()}catch(e){"object"==typeof window&&(t=window)}e.exports=t}}]);

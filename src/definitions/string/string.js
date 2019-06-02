@@ -1,10 +1,10 @@
 import CleaveType from '../cleave'
 import { Item } from '../../components'
-
+import { isStr } from 'jsUtils'
 class StringType extends CleaveType {
 
   static priority = 1
-  static eval = (value) => (typeof value === 'string')
+  static eval = (value) => isStr(value)
   static defaultValue = (newType, schema, settings) => ''
   
   constructor(config){

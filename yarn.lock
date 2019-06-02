@@ -6540,6 +6540,10 @@ webpack-cli@^3.1.2:
     v8-compile-cache "^2.0.2"
     yargs "^12.0.5"
 
+"webpack-shell-plugin@https://github.com/cdeutsch/webpack-shell-plugin.git#bee537d":
+  version "0.5.0"
+  resolved "https://github.com/cdeutsch/webpack-shell-plugin.git#bee537dcdce66ac6a25b67210a458e6a3afb1bac"
+
 webpack-sources@^1.0.1, webpack-sources@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.3.0.tgz#2a28dcb9f1f45fe960d8f1493252b5ee6530fa85"

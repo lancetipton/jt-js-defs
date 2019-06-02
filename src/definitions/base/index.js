@@ -44,7 +44,7 @@ export default class BaseType {
     const value = input.value
     // Build our update object
     const update = { key, original }
-    
+
     this.suffix
       // update the value and suffix
       ? updateValWithSuffix(update, input, this.suffix)
