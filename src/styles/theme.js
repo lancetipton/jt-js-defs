@@ -154,7 +154,8 @@ export const getTheme = () => ({
   itemEmptyBorder: `2px solid ${DEF_COLORS.green}`,
   itemErrorBorder: `2px solid ${DEF_COLORS.red}`,
   
-  itemErrorTextColor: DEF_COLORS.red,
+  itemErrorTextColor: DEF_COLORS.white,
+  itemErrorTextBackground: DEF_COLORS.red,
   
   headerOpenBorder: `2px solid ${DEF_COLORS.lime}`,
 

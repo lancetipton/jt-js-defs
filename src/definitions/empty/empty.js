@@ -1,6 +1,6 @@
 import BaseType from '../base'
 import { Item } from '../../components'
-import { Values, Schema } from 'jTConstants'
+import Constants from '../../constants'
 
 class EmptyType extends BaseType {
 
@@ -21,7 +21,7 @@ class EmptyType extends BaseType {
   onTypeChange = (e, Editor) => {
     const input =  e.target || e.currentTarget
     const value = input.value
-    const key = input.getAttribute(Values.DATA_SCHEMA_KEY)
+    const key = input.getAttribute(Constants.Values.DATA_SCHEMA_KEY)
 
     if(
       (value === undefined || key === undefined) ||
@@ -49,12 +49,12 @@ class EmptyType extends BaseType {
       Types,
       error,
       key: Array.isArray(parent.value) ? key : '',
-      type: Schema.EMPTY,
+      type: Constants.Schema.EMPTY,
       showLabel: true,
       keyType: keyType || 'text',
       keyEdit: !parent || !Array.isArray(parent.value),
-      mode: Schema.MODES.EDIT,
-      ...this.getActions(Schema.MODES.EDIT, { onTypeChange: this.onTypeChange }),
+      mode: Constants.Schema.MODES.EDIT,
+      ...this.getActions(Constants.Schema.MODES.EDIT, { onTypeChange: this.onTypeChange }),
       config: this.config,
     })
   }

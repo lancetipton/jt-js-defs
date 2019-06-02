@@ -1,6 +1,7 @@
-import { Values } from 'jTConstants'
 import { elements } from 'elementR'
+import Constants from '../../constants'
 
+const { Values } = Constants
 const getOptProps = (value, elValue) => (
   { value, className: 'item-option', selected: elValue === value }
 )
@@ -29,11 +30,11 @@ export const select = (props, type) => ({
   isEdit: true,
   showLabel: props.showLabel,
   keyVal: '',
-  editCls: Values.EDIT_CLS,
+  editCls: Constants.Values.EDIT_CLS,
   elValue: props.value && props.value.toString() || '',
   [`${type}Attrs`]: {
-    class: `item-${type} item-data ${Values.EDIT_CLS}`,
-    [Values.DATA_SCHEMA_KEY]: type,
+    class: `item-${type} item-data ${Constants.Values.EDIT_CLS}`,
+    [Constants.Values.DATA_SCHEMA_KEY]: type,
     name: `${type}-${props.key}`,
     value: props[type],
   },

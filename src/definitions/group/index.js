@@ -1,9 +1,7 @@
 import BaseType from '../base'
 import { updateParentHeights, } from '../../utils'
-import { clearObj, isObj, capitalize } from 'jsUtils'
-
-
-import { Schema, Values } from 'jTConstants'
+import { clearObj } from 'jsUtils'
+import Constants from '../../constants'
 import { List } from '../../components'
 
 const heightOffset = 2
@@ -21,12 +19,14 @@ class GroupType extends BaseType {
   constructor(config){
     super(config)
   }
-
+  
+  config = {}
+  
   store = {}
 
   onToggle = (e, Editor) => {
     e.stopPropagation()
-    const id = e.currentTarget.getAttribute(Values.DATA_TREE_ID)
+    const id = e.currentTarget.getAttribute(Constants.Values.DATA_TREE_ID)
     if(!id) return
 
     const schema = Editor.schema(id)
@@ -83,7 +83,7 @@ class GroupType extends BaseType {
     if(props.schema.isRoot && props.schema.open){
       this.store.isOpen = true
       // So use the header child height to set the default closed height
-      const rootHeader = document.getElementById(Values.JT_ROOT_HEADER_ID)
+      const rootHeader = document.getElementById(Constants.Values.JT_ROOT_HEADER_ID)
       if(!rootHeader) return
       this.store.closedMaxHt = `${rootHeader.scrollHeight + heightOffset}px`
 
@@ -120,7 +120,7 @@ class GroupType extends BaseType {
     // If the schema is open, update all the parent heights
     // This ensures the parent height does not cut off the children
     // when a child grows larger
-    (schema.mode === Schema.MODES.EDIT || schema.open) &&
+    (schema.mode === Constants.Schema.MODES.EDIT || schema.open) &&
       updateParentHeights(schema, childrenHt, heightOffset)
   }
 
@@ -128,12 +128,12 @@ class GroupType extends BaseType {
   onAdd = (e, Editor) => {
     e.stopPropagation()
 
-    const id = e.currentTarget.getAttribute(Values.DATA_TREE_ID)
+    const id = e.currentTarget.getAttribute(Constants.Values.DATA_TREE_ID)
     const schema = id && Editor.schema(id)
     const update = {
       parent: schema,
-      mode: Schema.MODES.ADD,
-      matchType: Schema.EMPTY,
+      mode: Constants.Schema.MODES.ADD,
+      matchType: Constants.Schema.EMPTY,
     }
 
     if(Array.isArray(schema.value))
@@ -141,8 +141,8 @@ class GroupType extends BaseType {
     
     schema && Editor.add({
       parent: schema,
-      mode: Schema.MODES.ADD,
-      matchType: Schema.EMPTY,
+      mode: Constants.Schema.MODES.ADD,
+      matchType: Constants.Schema.EMPTY,
     })
   }
 
@@ -154,7 +154,7 @@ class GroupType extends BaseType {
       },
       children,
     } = props
-    const notEditMode = mode !== Schema.MODES.EDIT
+    const notEditMode = mode !== Constants.Schema.MODES.EDIT
     const classes = open && `list-open` || ''
     let actions = {}
     if(notEditMode) actions.onToggle = this.onToggle

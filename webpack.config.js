@@ -41,11 +41,6 @@ module.exports = {
     ]
   },
   plugins: plugins,
-  resolve: {
-    alias: {
-      jTConstants: path.resolve(__dirname, './src/constants'),
-    },
-  },
   optimization: {
     nodeEnv: NODE_ENV,
     splitChunks: {

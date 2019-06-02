@@ -1,7 +1,9 @@
-import { Values } from 'jTConstants'
+import Constants from '../../constants'
 import { elements } from 'elementR'
 import { label } from './label'
 import { capitalize, isFunc, get } from 'jsUtils'
+
+const { Values } = Constants
 
 const getValue = (val, text) => {
   return text
@@ -23,9 +25,10 @@ const getAttrs = (props, type, keyVal, elVal) => {
     ? get(props, 'config.keyAttrs.classes')
     : get(props, 'config.valueAttrs.classes')
 
-  let classes = `item-data ${Values.EDIT_CLS}${configClasses && ' ' + configClasses || ''}`
-  type !== 'key' && props.config.useCleave && (classes += ` ${Values.CLEAVE_CLS}`)
-  props.config.isNumber && (classes += ` ${Values.NUMBER_CLS}`)
+  let classes = `item-data ${Constants.Values.EDIT_CLS}${configClasses && ' ' + configClasses || ''}`
+  type !== 'key' && props.config.useCleave && (classes += ` ${Constants.Values.CLEAVE_CLS}`)
+
+  props.config.isNumber && (classes += ` ${Constants.Values.NUMBER_CLS}`)
   
   const attrs = type === 'key'
     ? {
@@ -33,7 +36,7 @@ const getAttrs = (props, type, keyVal, elVal) => {
       class: classes,
       type: props.keyType || 'text',
       value: keyVal,
-      [Values.DATA_SCHEMA_KEY]: type,
+      [Constants.Values.DATA_SCHEMA_KEY]: type,
       name: `key-${props.key}`,
       disabled: props.disabled,
       onClick: props.onClick || !props.onFocus && `this.select()`,
@@ -42,7 +45,7 @@ const getAttrs = (props, type, keyVal, elVal) => {
       ...(props.config && props.config.valueAttrs || {}),
       class: classes,
       type: props.valueType || 'text',
-      [Values.DATA_SCHEMA_KEY]: type,
+      [Constants.Values.DATA_SCHEMA_KEY]: type,
       name: `value-${props.key}`,
       value: elVal,
       disabled: props.disabled,
@@ -53,7 +56,7 @@ const getAttrs = (props, type, keyVal, elVal) => {
   Object.entries(props)
     .map(([ key, value ]) => 
       !attrs[key] &&
-        Values.DOM_EVENTS.indexOf(key) !== -1 &&
+        Constants.Values.DOM_EVENTS.indexOf(key) !== -1 &&
         isFunc(value) &&
         (attrs[key] = value)
     )
@@ -104,7 +107,7 @@ export const input = (props, type) => {
     El: elements.input,
     isEdit: true,
     showLabel: props.showLabel,
-    editCls: Values.EDIT_CLS,
+    editCls: Constants.Values.EDIT_CLS,
     [`${type}Attrs`]: getAttrs(props, type, keyVal, elValue)
   }
 }

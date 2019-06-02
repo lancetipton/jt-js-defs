@@ -1,7 +1,7 @@
 import { Buttons } from './buttons'
 import { elements } from 'elementR'
 import { isFunc } from 'jsUtils'
-import { Values, Schema } from 'jTConstants'
+import Constants from '../constants'
 import * as subComps from './sub'
 import { errorMessage } from './error'
 
@@ -14,7 +14,7 @@ const { div } = elements
  * @return { object } built options 
  */
 const buildOptions = (props, type) => {  
-  const isEdit = props.mode === Schema.MODES.EDIT
+  const isEdit = props.mode === Constants.Schema.MODES.EDIT
   const typeEl = props[`${type}El`]
   return !isEdit 
     ? subComps.display(props, type)
@@ -47,7 +47,7 @@ const buildItemKey = ({ showLabel, El, keyAttrs, keyVal }, props) => {
  */
 const buildItemValue = (itemProps, props) => {
   const { showLabel, El, valueAttrs, elValue, children } = itemProps
-  if(props && props.type === Schema.EMPTY) valueAttrs.disabled = true
+  if(props && props.type === Constants.Schema.EMPTY) valueAttrs.disabled = true
 
   const valEl = El(valueAttrs, isFunc(children) && children(itemProps) || elValue)
   
@@ -66,9 +66,9 @@ const buildItemValue = (itemProps, props) => {
  * @return { dom node }
  */
 export const Item = (props={}) => {
-  let classes = `item ${props.mode === Schema.MODES.EDIT && Values.EDIT_CLS || ''}`
+  let classes = `item ${props.mode === Constants.Schema.MODES.EDIT && Constants.Values.EDIT_CLS || ''}`
   
-  if(props.type === Schema.EMPTY) classes += ` item-empty`
+  if(props.type === Constants.Schema.EMPTY) classes += ` item-empty`
   if(props.error) classes += ` item-error`
 
   return div(

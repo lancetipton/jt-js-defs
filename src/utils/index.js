@@ -1,5 +1,5 @@
 import { isFunc, isStr } from 'jsUtils'
-import { Values } from '../constants'
+import Constants from '../constants'
 
 /**
  * Loop through the schema, from the bottom up
@@ -20,7 +20,7 @@ export const updateParentHeights = (schema, updateHeight, offset=0) => {
 
 
 export const updateParentConstruct = (config, parent) => {
-  Object.entries(Values.PARENT_OVERWRITE).map(([ key, type ]) => {
+  Object.entries(Constants.Values.PARENT_OVERWRITE).map(([ key, type ]) => {
     if(typeof config[key] === type && parent[key] !== config[key])
       parent[key] = config[key]
   })
@@ -28,15 +28,15 @@ export const updateParentConstruct = (config, parent) => {
 
 export const addCustomEvents = (config, userEvents) => (
   Object
-    .keys(Values.CUSTOM_EVENTS)
+    .keys(Constants.Values.CUSTOM_EVENTS)
     .map(key => (
-      userEvents[key] = isFunc(config[key]) && config[key] || Values.CUSTOM_EVENTS[key]
+      userEvents[key] = isFunc(config[key]) && config[key] || Constants.Values.CUSTOM_EVENTS[key]
     ))
 )
 
 export const addAllowedConfigOpts = (config, baseConfig) => ({
   ...baseConfig,
-  ...Values.TYPES_CONFIG_OPTS
+  ...Constants.Values.TYPES_CONFIG_OPTS
     .reduce((typeConf, opt) => (
       (opt in config)  && (typeConf[opt] = config[opt]) || typeConf), {}
     ) 
@@ -49,7 +49,7 @@ export const callEditor = (e, update, usrEvent, type, Editor) => {
 }
 
 export const shouldDoDefault = (e, update, Editor, userEvent) => {
-  const id = e.currentTarget.getAttribute(Values.DATA_TREE_ID)
+  const id = e.currentTarget.getAttribute(Constants.Values.DATA_TREE_ID)
   return id && userEvent && userEvent(e, update, id, Editor) === false || id
 }
 
@@ -58,7 +58,7 @@ export const updateValue = (update, input) => {
 
   // Check input type, and if it has the CLEAVE_CLS
   // Which means is should be a number
-  if(input.nodeName === 'INPUT' && input.classList.contains(Values.NUMBER_CLS)){
+  if(input.nodeName === 'INPUT' && input.classList.contains(Constants.Values.NUMBER_CLS)){
     // Check if the input should be a number
     const numVal = Number(value)
     // If it's a valid number use that instead
@@ -74,9 +74,9 @@ export const updateValue = (update, input) => {
 
 export const togglePastAction = type => (
   Array
-    .from(document.querySelectorAll(`.${Values.PASTE_ACTION_CLS}`))
+    .from(document.querySelectorAll(`.${Constants.Values.PASTE_ACTION_CLS}`))
     .map(node => {
-      node && node.classList && node.classList[type](Values.SHOW_PASTE_CLS)
+      node && node.classList && node.classList[type](Constants.Values.SHOW_PASTE_CLS)
     })
 )
 
@@ -95,7 +95,7 @@ export const updateSuffix = (value, suffix, remove) => {
 
 export const suffixSelection = function(e, Editor) {
   const input =  e.target || e.currentTarget
-  const key = input && input.getAttribute(Values.DATA_SCHEMA_KEY)
+  const key = input && input.getAttribute(Constants.Values.DATA_SCHEMA_KEY)
   if(!key || key !== 'value' || !input || !input.value) return
 
   const selection = window.getSelection()

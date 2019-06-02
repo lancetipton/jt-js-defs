@@ -1,7 +1,9 @@
 import NumberType from '../number'
 import { Item } from '../../../components'
 import { suffixSelection, updateSuffix } from '../../../utils'
-import { Values } from 'jTConstants'
+import Constants from '../../../constants'
+
+const { Values } = Constants
 
 class PercentType extends NumberType {
   
@@ -23,7 +25,7 @@ class PercentType extends NumberType {
   
   updateSelection = (e, Editor) => {
     const input =  e.target || e.currentTarget
-    const key = input && input.getAttribute(Values.DATA_SCHEMA_KEY)
+    const key = input && input.getAttribute(Constants.Values.DATA_SCHEMA_KEY)
     if(!key || !input || !input.value) return
 
     key !== 'value'

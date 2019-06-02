@@ -158,6 +158,7 @@
 
 .j-tree-editor ul.list > li.row > div.item.item-edit {
   flex-wrap: nowrap;
+  margin-top: 10px;
 }
 
 .j-tree-editor ul.list > li.row > div.item.item-edit.item-error.item-empty,
@@ -178,12 +179,15 @@
   text-align: right;
   max-height: 0px;
   position: absolute;
+  top: -8px;
   right: 0px;
-  top: -15px;
 }
 
 .j-tree-editor li.row > div.item.item-error .item-error-message .item-error-text {
   position: relative;
+  background-color: @itemErrorTextBackground;
+  color: @itemErrorTextColor;
+  padding: 3px 10px;
 }
 
 

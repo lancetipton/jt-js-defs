@@ -1,8 +1,9 @@
 import { elements } from 'elementR'
 import { Icon } from './icon'
 import { capitalize } from 'jsUtils'
-import { Values, Schema } from 'jTConstants'
+import Constants from '../../constants'
 import { selectWrapper, inputWrapper } from '../sub'
+
 const { div, span, option } = elements
 const btnTypes = {
   onEdit: { icon: 'pen', key: 'Edit' },
@@ -25,10 +26,10 @@ const typeLabel = type => (
 )
 
 const showTypeValue = (props, type) => {
-  if(type !== Schema.EMPTY || !props.Types) return typeLabel(type)
+  if(type !== Constants.Schema.EMPTY || !props.Types) return typeLabel(type)
 
   const options = Object
-    .keys(props.Types.getFlat(null, { filter: [ Schema.EMPTY ] }))
+    .keys(props.Types.get(null, { filter: [ Constants.Schema.EMPTY ] }))
     .map(value => option({
       value,
       selected: props.matchType === value
@@ -42,8 +43,8 @@ const showTypeValue = (props, type) => {
     { type: type, showLabel: true },
     selectWrapper(
       {
-        class: `item-matchType item-data ${Values.EDIT_CLS}`,
-        [Values.DATA_SCHEMA_KEY]: 'matchType',
+        class: `item-matchType item-data ${Constants.Values.EDIT_CLS}`,
+        [Constants.Values.DATA_SCHEMA_KEY]: 'matchType',
         name: `type-matchType`,
         value: props.matchType,
         onChange: props.onTypeChange,
@@ -59,7 +60,7 @@ const buildIcon = (action, type, id, wrapperProps={}) => {
     ? Icon(
         btn.icon,
         btn.key,
-        { icon: { [Values.DATA_TREE_ID]: id, onclick: action, }, wrapper: wrapperProps },
+        { icon: { [Constants.Values.DATA_TREE_ID]: id, onclick: action, }, wrapper: wrapperProps },
         type
       )
     : ''
@@ -72,8 +73,8 @@ const buildBtns = (id, props) => {
       let attrs = {}
       if(key === 'onPaste' && !props.isRoot){
         attrs = props.showPaste
-          ? { className: `${Values.SHOW_PASTE_CLS} ${Values.PASTE_ACTION_CLS}` }
-          : { className: `${Values.PASTE_ACTION_CLS}` }
+          ? { className: `${Constants.Values.SHOW_PASTE_CLS} ${Constants.Values.PASTE_ACTION_CLS}` }
+          : { className: `${Constants.Values.PASTE_ACTION_CLS}` }
       }
 
       if(props.isRoot){

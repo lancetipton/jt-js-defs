@@ -1,5 +1,5 @@
 import { buildTheme } from '../../styles/build_theme'
-import { Values, Schema } from 'jTConstants'
+import Constants from '../../constants'
 import { clearObj } from 'jsUtils'
 import { 
   updateParentConstruct,
@@ -36,7 +36,7 @@ export default class BaseType {
   onChange = (e, Editor) => {
     const input =  e.target || e.currentTarget
     // Get the key for the input
-    const key = input && input.getAttribute(Values.DATA_SCHEMA_KEY)
+    const key = input && input.getAttribute(Constants.Values.DATA_SCHEMA_KEY)
     if(!key || !input) return
 
     // Get the values to compare
@@ -91,7 +91,7 @@ export default class BaseType {
   onEdit = (e, Editor) => {
     callEditor(
       e,
-      { mode: Schema.MODES.EDIT },
+      { mode: Constants.Schema.MODES.EDIT },
       this.userEvents.onEdit,
       'update',
       Editor
@@ -101,7 +101,7 @@ export default class BaseType {
   onDelete = (e, Editor) => {
     callEditor(
       e,
-      { mode: Schema.MODES.REMOVE },
+      { mode: Constants.Schema.MODES.REMOVE },
       this.userEvents.onDelete,
       'remove',
       Editor
@@ -112,7 +112,7 @@ export default class BaseType {
     e && e.stopPropagation()
     const id = shouldDoDefault(
       e,
-      { mode: Schema.MODES.REMOVE },
+      { mode: Constants.Schema.MODES.REMOVE },
       Editor,
       this.userEvents.onCopy,
     )
@@ -125,7 +125,7 @@ export default class BaseType {
 
   onCut = (e, Editor) => {
     e && e.stopPropagation()
-    const update = { mode: Schema.MODES.CUT }
+    const update = { mode: Constants.Schema.MODES.CUT }
     const id = shouldDoDefault(
       e,
       update,
@@ -142,7 +142,7 @@ export default class BaseType {
 
   onPaste = (e, Editor) => {
     e && e.stopPropagation()
-    const schema = Editor.schema(e.currentTarget.getAttribute(Values.DATA_TREE_ID))
+    const schema = Editor.schema(e.currentTarget.getAttribute(Constants.Values.DATA_TREE_ID))
     Editor.replaceAtPos(schema.id, { ...Editor.temp })
     Editor.temp = undefined
     togglePastAction('remove')
@@ -151,7 +151,7 @@ export default class BaseType {
   shouldDoDefault = (...args) => shouldDoDefault(...args)
   
   getActions = (mode, extra) => {
-    return mode !== Schema.MODES.EDIT
+    return mode !== Constants.Schema.MODES.EDIT
       ? {
         onEdit: this.onEdit,
         onCopy: this.onCopy,
