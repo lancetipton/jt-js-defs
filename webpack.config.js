@@ -17,7 +17,7 @@ module.exports = {
   mode: NODE_ENV || 'development',
   devtool: NODE_ENV === 'production' ? 'source-map' : 'inline-source-map',
   entry: {
-    [libraryName]: './src/scripts/index.js'
+    [libraryName]: './src/index.js'
   },
   output: {
     path: outputPath,
@@ -43,7 +43,7 @@ module.exports = {
   plugins: plugins,
   resolve: {
     alias: {
-      jTConstants: path.resolve(__dirname, './src/scripts/constants'),
+      jTConstants: path.resolve(__dirname, './src/constants'),
     },
   },
   optimization: {

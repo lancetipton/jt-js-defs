@@ -12,7 +12,7 @@ import {
   updateValWithSuffix,
 } from '../../utils'
 
-class BaseType {
+export default class BaseType {
 
   static priority = 0
   static matchHelper = () => {}
@@ -216,6 +216,3 @@ class BaseType {
   }
   
 }
-
-
-export default BaseType
