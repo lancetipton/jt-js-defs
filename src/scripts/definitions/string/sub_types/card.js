@@ -1,56 +1,34 @@
 import StringType from '../string'
-import { Item } from '../../../components'
 
-const luhn = cardnumber => {
-  const getdigits = /\d/g
-  const digits = []
-  while (match = getdigits.exec(cardnumber))
-    digits.push(parseInt(match[0], 10))
+const luhn = (arr => {
+  return ccNum => {
+    let len = ccNum.length
+    let bit = 1
+    let sum = 0
+    let val
 
-  let sum = 0
-  let alt = false
-  digits.map(digit => {
-    if(alt) {
-      digit *= 2
-      if (digit > 9) digit -= 9
+    while (len) {
+      val = parseInt(ccNum.charAt(--len), 10)
+      sum += (bit ^= 1) ? arr[val] : val
     }
 
-    sum += digit
-    alt = !alt
-  })
+    return sum && sum % 10 === 0
+  }
+})([0, 2, 4, 6, 8, 1, 3, 5, 7, 9])
 
-  return sum % 10 == 0
-    ? true
-    : false
-}
-
-const cardValidate = {
-  visa: value => value.match(/^(?:4[0-9]{12}(?:[0-9]{3})?)$/),
-  master: value => value.match(/^(?:5[1-5][0-9]{14})$/),
-  jcb: value => value.match(/^(?:(?:2131|1800|35\d{3})\d{11})$/),
-  discover: value => value.match(/^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/),
-  diners: value => value.match(/^(?:3(?:0[0-5]|[68][0-9])[0-9]{11})$/),
-  amx: value => value.match(/^(?:3[47][0-9]{13})$/),
-}
 
 class CardType extends StringType {
 
   static priority = 2
   static defaultValue = ''
-  // static allowEmptyValue = ''
-  static eval = value => {
-    let validCard
-    Object
-      .keys(cardValidate)
-      .entries(([ type, test ]) => {
-        if(!validCard && test(value)) validCard = type
-      })
+  static eval = value => luhn(value.replace(/ /g, ''))
+  
+  static error = args => {
+    if(args.prop !== 'value') return args.message || 'Error, Invalid data!'
 
-    return validCard
-      ? luhn(value)
-      : false
+    return `Invalid card number, ensure the number matches the card number.`
   }
-
+  
   constructor(config){
     super({
       ...config,
@@ -61,7 +39,9 @@ class CardType extends StringType {
     })
   }
   
-  useCleave = true
+  config = {
+    useCleave: true
+  }
   
 }
 

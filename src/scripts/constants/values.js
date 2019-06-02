@@ -43,6 +43,10 @@ export const Values = Object.freeze({
     // Auto expand the input to the size of it's text content
     'expandOnChange',
     // Array of allowed options to be used in select inputs, when editing
-    'options'
+    'options',
+    // Attributes to add the key input / select when editing
+    'keyAttrs',
+    // Attributes to add the value input / select when editing
+    'valueAttrs',
   ]),
 })

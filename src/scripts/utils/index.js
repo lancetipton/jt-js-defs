@@ -34,12 +34,13 @@ export const addCustomEvents = (config, userEvents) => (
     ))
 )
 
-export const addAllowedConfigOpts = config => (
-  Values.TYPES_CONFIG_OPTS
+export const addAllowedConfigOpts = (config, baseConfig) => ({
+  ...baseConfig,
+  ...Values.TYPES_CONFIG_OPTS
     .reduce((typeConf, opt) => (
       (opt in config)  && (typeConf[opt] = config[opt]) || typeConf), {}
-    )
-)
+    ) 
+})
 
 export const callEditor = (e, update, usrEvent, type, Editor) => {
   e && e.stopPropagation()
@@ -52,7 +53,9 @@ export const shouldDoDefault = (e, update, Editor, userEvent) => {
   return id && userEvent && userEvent(e, update, id, Editor) === false || id
 }
 
-export const updateValue = (update, input, value, ) => {
+export const updateValue = (update, input) => {
+  const value = input.value
+
   // Check input type, and if it has the CLEAVE_CLS
   // Which means is should be a number
   if(input.nodeName === 'INPUT' && input.classList.contains(Values.NUMBER_CLS)){
@@ -103,4 +106,19 @@ export const suffixSelection = function(e, Editor) {
         input.setSelectionRange(input.selectionEnd - 1, input.selectionEnd - 1)
     : selected[selected.length - 1] === this.suffix &&
         input.setSelectionRange(input.selectionStart, input.selectionEnd - 1)
+}
+
+export const updateValWithSuffix = (update, input, suffix) => {
+  const value = updateSuffix(input.value, suffix, true)
+  
+  if(!value) return input.value = ''
+  // Check if the input should be a number
+  const numVal = (value || value === 0) && Number(value)
+
+  // If it's a valid number use that instead
+  if(!isNaN(numVal)){
+    update.value = updateSuffix(numVal, suffix)
+    update.value !== input.value && (input.value = update.value)
+  }
+  else input.value = ''
 }

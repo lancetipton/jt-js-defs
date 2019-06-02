@@ -183,6 +183,7 @@ class GroupType extends BaseType {
       valueEl: 'select',
       keyEdit: !props.schema.parent || !Array.isArray(props.schema.parent.value),
       ...this.getActions(mode, actions),
+      config: this.config,
     })
   }
 

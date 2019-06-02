@@ -15,45 +15,11 @@ class PercentType extends NumberType {
     super(config)
   }
 
-  suffix = '%'
-  
-  onChange = (e, Editor) => {
-    const input =  e.target || e.currentTarget
-    // Get the key for the input
-    const key = input && input.getAttribute(Values.DATA_SCHEMA_KEY)
-    if(!key || !input) return
-
-    // Get the values to compare
-    const original = this.original[key]
-    const value = updateSuffix(input.value, this.suffix, true)
-    
-    if(!value) return input.value = ''
-    
-    // Build our update object
-    const update = { key, original }
-
-    // Check if the input should be a number
-    const numVal = (value || value === 0) && Number(value)
-
-    // If it's a valid number use that instead
-    if(!isNaN(numVal)){
-      update.value = updateSuffix(numVal, this.suffix)
-      update.value !== input.value && (input.value = update.value)
-    }
-    else input.value = ''
-
-    // Ensure these was a change, before we call the update
-    if(original === update.value) return
-
-    // Check if the input width should be update to match the value
-    update.value &&  this.config.expandOnChange !== false && this.setWidth(input)
-    // Call the userEvent to check if it should be updated
-    // Then update the value locally
-    // When the save action is called, this value will then be saved to the tree
-    if(this.userEvents.onChange(e, update, this.original.id, Editor) !== false)
-      this.updated[update.key] = update.value
-
+  config = {
+    isNumber: true
   }
+
+  suffix = '%'
   
   updateSelection = (e, Editor) => {
     const input =  e.target || e.currentTarget
@@ -76,7 +42,6 @@ class PercentType extends NumberType {
       error,
       type: matchType,
       showLabel: true,
-      isNumber: true,
       value: useVal,
       showPaste: props.settings.Editor.hasTemp(),
       keyEdit: !parent || !Array.isArray(parent.value),
@@ -85,7 +50,8 @@ class PercentType extends NumberType {
         onFocus: this.updateSelection,
         onClick: this.updateSelection,
         onKeyUp: suffixSelection.bind(this)
-      })
+      }),
+      config: this.config,
     })
   }
 

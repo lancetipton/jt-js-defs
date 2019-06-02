@@ -30,7 +30,8 @@ class BooleanType extends BaseType {
       showPaste: props.settings.Editor.hasTemp(),
       keyEdit: !parent || !Array.isArray(parent.value),
       keyType: keyType || 'text',
-      ...this.getActions(mode)
+      ...this.getActions(mode),
+      config: this.config,
     })
   }
   

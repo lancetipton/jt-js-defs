@@ -26,7 +26,9 @@ class UuidType extends StringType {
     })
   }
   
-  useCleave = true
+  config = {
+    useCleave: true
+  }
 
 }
 

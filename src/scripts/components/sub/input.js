@@ -1,7 +1,7 @@
 import { Values } from 'jTConstants'
 import { elements } from 'elementR'
 import { label } from './label'
-import { capitalize, isFunc } from 'jsUtils'
+import { capitalize, isFunc, get } from 'jsUtils'
 
 const getValue = (val, text) => {
   return text
@@ -19,12 +19,17 @@ const getValue = (val, text) => {
  * @return { dom node }
  */
 const getAttrs = (props, type, keyVal, elVal) => {
-  let classes = `item-data ${Values.EDIT_CLS}`
-  type !== 'key' && props.cleave && (classes += ` ${Values.CLEAVE_CLS}`)
-  props.isNumber && (classes += ` ${Values.NUMBER_CLS}`)
+  const configClasses = type === 'key'
+    ? get(props, 'config.keyAttrs.classes')
+    : get(props, 'config.valueAttrs.classes')
+
+  let classes = `item-data ${Values.EDIT_CLS}${configClasses && ' ' + configClasses || ''}`
+  type !== 'key' && props.config.useCleave && (classes += ` ${Values.CLEAVE_CLS}`)
+  props.config.isNumber && (classes += ` ${Values.NUMBER_CLS}`)
   
   const attrs = type === 'key'
     ? {
+      ...(props.config && props.config.keyAttrs || {}),
       class: classes,
       type: props.keyType || 'text',
       value: keyVal,
@@ -34,6 +39,7 @@ const getAttrs = (props, type, keyVal, elVal) => {
       onClick: props.onClick || !props.onFocus && `this.select()`,
     }
     : {
+      ...(props.config && props.config.valueAttrs || {}),
       class: classes,
       type: props.valueType || 'text',
       [Values.DATA_SCHEMA_KEY]: type,

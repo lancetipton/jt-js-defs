@@ -7,8 +7,9 @@ import {
   addAllowedConfigOpts,
   callEditor,
   shouldDoDefault,
+  togglePastAction,
   updateValue,
-  togglePastAction
+  updateValWithSuffix,
 } from '../../utils'
 
 class BaseType {
@@ -25,7 +26,7 @@ class BaseType {
 
     updateParentConstruct(config, this.constructor)
     addCustomEvents(config, this.userEvents)
-    this.config = addAllowedConfigOpts(config) || {}
+    this.config = addAllowedConfigOpts(config, this.config) || {}
   }
 
   userEvents = {}
@@ -43,8 +44,13 @@ class BaseType {
     const value = input.value
     // Build our update object
     const update = { key, original }
-    // Set the value to update
-    updateValue(update, input, value)
+    
+    this.suffix
+      // update the value and suffix
+      ? updateValWithSuffix(update, input, this.suffix)
+      // Set the value to update
+      : updateValue(update, input)
+
     // Ensure these was a change, before we call the update
     if(original === update.value) return
 

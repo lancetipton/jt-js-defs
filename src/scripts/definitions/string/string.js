@@ -18,6 +18,8 @@ class StringType extends CleaveType {
     })
   }
 
+  config = { useCleave: true }
+
   render = props => {
     const { schema: { id, key, value, mode, matchType, keyType, parent, error } } = props
     return Item({
@@ -32,7 +34,7 @@ class StringType extends CleaveType {
       keyEdit: !parent || !Array.isArray(parent.value),
       keyType: keyType || 'text',
       ...this.getActions(mode),
-      cleave: this.useCleave,
+      config: this.config,
     })
   }
 

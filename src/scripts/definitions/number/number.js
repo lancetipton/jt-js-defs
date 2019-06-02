@@ -19,8 +19,12 @@ class NumberType extends CleaveType {
       }
     })
   }
+
+  config = {
+    isNumber: true,
+    useCleave: true,
+  }
   
-  isNumber = true
   
   render = props => {
     const { schema: { id, key, value, mode, matchType, keyType, parent, error } } = props
@@ -33,12 +37,11 @@ class NumberType extends CleaveType {
       error,
       type: matchType,
       showLabel: true,
-      cleave: true,
-      isNumber: this.isNumber,
       showPaste: props.settings.Editor.hasTemp(),
       keyEdit: !parent || !Array.isArray(parent.value),
       keyType: keyType || 'text',
-      ...this.getActions(mode)
+      ...this.getActions(mode),
+      config: this.config,
     })
   }
   

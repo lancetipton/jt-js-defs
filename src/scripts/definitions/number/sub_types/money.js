@@ -9,6 +9,7 @@ class MoneyType extends NumberType {
   }
   
   constructor(config){
+    console.log(`---------- needs error handler ----------`)
     super({
       ...config,
       cleave: {
@@ -23,7 +24,10 @@ class MoneyType extends NumberType {
     })
   }
   
-  isNumber = false
+  config = {
+    isNumber: true,
+    useCleave: true,
+  }
 
 }
 

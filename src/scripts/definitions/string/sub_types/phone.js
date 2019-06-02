@@ -11,10 +11,27 @@ class PhoneType extends StringType {
     return Boolean(regex.test(value.replace(/\D/g, '')))
   }
 
-  constructor(config){
-    super(config)
+  static error = args => {
+    if(args.prop !== 'value') return args.message || 'Error, Invalid data!'
+
+    return `Invalid phone number. Format must should be 123-123-1234`
   }
 
+  constructor(config){
+    super({
+      ...config,
+      cleave: {
+        phone: true,
+        delimiter: '-',
+        phoneRegionCode: 'US',
+        ...(config && config.cleave || {}),
+      }
+    })
+  }
+  
+  config = {
+    useCleave: true
+  }
 
 }
 
