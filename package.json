@@ -11,9 +11,12 @@
     "build": "ENV=production webpack --mode production",
     "clean": "rm -rf yarn.lock && rm -rf node_modules && yarn install --force",
     "dev": "ENV=development webpack --watch --progress",
-    "test": "NODE_ENV=test jest --verbose"
+    "test": "NODE_ENV=test jest --verbose",
+    "postinstall": "postinstall-build build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "postinstall-build": "^5.0.3"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",

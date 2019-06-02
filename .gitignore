@@ -49,4 +49,5 @@ lib/sync/clients
 app/git
 notes.sh
 *.env
-repos/
+
+/build

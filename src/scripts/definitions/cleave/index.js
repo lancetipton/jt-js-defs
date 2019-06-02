@@ -1,8 +1,5 @@
 import BaseType from '../base'
 import Cleave from 'cleave.js'
-require('cleave.js/dist/addons/cleave-phone.us.js')
-
-
 import { clearObj } from 'jsUtils'
 import { Values, Schema } from 'jTConstants'
 
