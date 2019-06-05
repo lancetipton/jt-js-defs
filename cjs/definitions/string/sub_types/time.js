@@ -23,15 +23,15 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-let DATE_INPUT_SUPPORT;
+let TIME_INPUT_SUPPORT;
 
-class DateType extends _string.default {
+class TimeType extends _string.default {
   constructor(config) {
     super(_objectSpread({}, config, {
       cleave: _objectSpread({
-        date: true,
-        delimiter: '-',
-        datePattern: ['Y', 'm', 'd']
+        delimiter: ':',
+        time: true,
+        timePattern: ['h', 'm']
       }, config && config.cleave || {})
     }));
 
@@ -41,47 +41,39 @@ class DateType extends _string.default {
     });
 
     _defineProperty(this, "getDisplayValue", value => {
-      const valSplit = value.split('-').reverse();
-      const temp = valSplit[0];
-      valSplit[0] = valSplit[1];
-      valSplit[1] = temp;
-      return valSplit.join('-');
+      return parseInt(value.split(':')[0]) < 12 ? `${value} AM` : `${value} PM`;
     });
 
-    if (!DATE_INPUT_SUPPORT && DATE_INPUT_SUPPORT !== false) DATE_INPUT_SUPPORT = (0, _utils.checkInputSupport)('date');
-    this.config.useCleave = !DATE_INPUT_SUPPORT;
-    this.config.valueAttrs.type = DATE_INPUT_SUPPORT && 'date' || 'text';
-    if (!DATE_INPUT_SUPPORT) this.config.valueAttrs.placeholder = 'YYYY-MM-DD';
+    if (!TIME_INPUT_SUPPORT && TIME_INPUT_SUPPORT !== false) TIME_INPUT_SUPPORT = (0, _utils.checkInputSupport)('time');
+    this.config.useCleave = !TIME_INPUT_SUPPORT;
+    this.config.valueAttrs.type = TIME_INPUT_SUPPORT && 'time' || 'text';
+    if (!TIME_INPUT_SUPPORT) this.config.valueAttrs.placeholder = 'HH:MM';
   }
 
 }
 
-_defineProperty(DateType, "priority", 2);
+_defineProperty(TimeType, "priority", 2);
 
-_defineProperty(DateType, "defaultValue", '');
+_defineProperty(TimeType, "defaultValue", '');
 
-_defineProperty(DateType, "allowEmptyValue", '');
+_defineProperty(TimeType, "allowEmptyValue", '');
 
-_defineProperty(DateType, "error", args => {
+_defineProperty(TimeType, "error", args => {
   if (args.prop !== 'value') return args.message || 'Error, Invalid data!';
   const date = new Date();
-  const today = date.getDate();
-  const fullDay = today.length === 2 && today || `0${today}`;
-  const month = date.getMonth() + 1;
-  const fullMonth = month.length === 2 && month || `0${month}`;
-  const format = `${fullDay}-${fullMonth}-${date.getFullYear()}`;
-  return `Invalid date. Date format should match ${format} (Day-Month-Year)`;
+  const format = `${date.hours}:${date.minutes}}`;
+  return `Invalid time. Time format should match ${format} (Hour:Minutes)`;
 });
 
-_defineProperty(DateType, "eval", value => {
+_defineProperty(TimeType, "eval", value => {
   if (!(0, _jsUtils.isStr)(value)) return false;
-  const dateSplit = value.split('-');
-  if (dateSplit.length !== 3) return false;
+  const dateSplit = value.split(':');
+  if (dateSplit.length !== 2) return false;
   return dateSplit.reduce((valid, date) => {
     if (!valid) return valid;
-    return isNaN(parseInt(date)) ? false : valid && (date.length === 2 || date.length === 4);
+    return isNaN(parseInt(date)) ? false : valid && date.length === 2;
   }, true);
 });
 
-var _default = DateType;
+var _default = TimeType;
 exports.default = _default;

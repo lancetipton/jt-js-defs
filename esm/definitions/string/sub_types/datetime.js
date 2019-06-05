@@ -10,8 +10,6 @@ require("core-js/modules/es.array.concat");
 
 require("core-js/modules/es.array.filter");
 
-require("core-js/modules/es.array.index-of");
-
 require("core-js/modules/es.array.iterator");
 
 require("core-js/modules/es.object.get-own-property-descriptor");
@@ -24,7 +22,11 @@ require("core-js/modules/es.object.set-prototype-of");
 
 require("core-js/modules/es.object.to-string");
 
+require("core-js/modules/es.parse-int");
+
 require("core-js/modules/es.string.iterator");
+
+require("core-js/modules/es.string.split");
 
 require("core-js/modules/web.dom-collections.for-each");
 
@@ -35,13 +37,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _number = _interopRequireDefault(require("../number"));
+var _string = _interopRequireDefault(require("../string"));
 
-var _components = require("../../../components");
+var _jsUtils = require("jsUtils");
 
 var _utils = require("../../../utils");
-
-var _constants = _interopRequireDefault(require("../../../constants"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -63,75 +63,68 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var PercentType =
-/*#__PURE__*/
-function (_NumberType) {
-  _inherits(PercentType, _NumberType);
+var DATETIME_INPUT_SUPPORT;
 
-  function PercentType(config) {
+var DateTimeType =
+/*#__PURE__*/
+function (_StringType) {
+  _inherits(DateTimeType, _StringType);
+
+  function DateTimeType(config) {
     var _this;
 
-    _classCallCheck(this, PercentType);
+    _classCallCheck(this, DateTimeType);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(PercentType).call(this, config));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DateTimeType).call(this, _objectSpread({}, config, {
+      cleave: _objectSpread({
+        numeral: true,
+        numeralThousandsGroupStyle: 'none',
+        blocks: [4, 2, 2, 2, 2],
+        delimiters: ['-', '-', ', ', ':']
+      }, config && config.cleave || {})
+    })));
 
     _defineProperty(_assertThisInitialized(_this), "config", {
-      isNumber: true
+      useCleave: false,
+      valueAttrs: {}
     });
 
-    _defineProperty(_assertThisInitialized(_this), "suffix", '%');
-
-    _defineProperty(_assertThisInitialized(_this), "updateSelection", function (e) {
-      var input = e.target || e.currentTarget;
-      var key = input && input.getAttribute(_constants.default.Values.DATA_SCHEMA_KEY);
-      if (!key || !input || !input.value) return;
-      key !== 'value' ? input.select() : input.setSelectionRange(0, input.value.length - 1);
+    _defineProperty(_assertThisInitialized(_this), "getDisplayValue", function (value) {
+      return value;
     });
 
-    _defineProperty(_assertThisInitialized(_this), "render", function (props) {
-      var _props$schema = props.schema,
-          id = _props$schema.id,
-          key = _props$schema.key,
-          value = _props$schema.value,
-          mode = _props$schema.mode,
-          matchType = _props$schema.matchType,
-          keyType = _props$schema.keyType,
-          parent = _props$schema.parent,
-          error = _props$schema.error;
-      var useVal = (0, _utils.updateSuffix)(value, _this.suffix);
-      return (0, _components.Item)(_objectSpread({
-        id: id,
-        key: key,
-        mode: mode,
-        error: error,
-        type: matchType,
-        showLabel: true,
-        value: useVal,
-        showPaste: props.settings.Editor.hasTemp(),
-        keyEdit: !parent || !Array.isArray(parent.value),
-        keyType: keyType || 'text'
-      }, _this.getActions(mode, {
-        onFocus: _this.updateSelection,
-        onClick: _this.updateSelection,
-        onKeyUp: _utils.suffixSelection.bind(_assertThisInitialized(_this))
-      }), {
-        config: _this.config
-      }));
-    });
-
+    if (!DATETIME_INPUT_SUPPORT && DATETIME_INPUT_SUPPORT !== false) DATETIME_INPUT_SUPPORT = (0, _utils.checkInputSupport)('datetime-local');
+    _this.config.useCleave = !DATETIME_INPUT_SUPPORT;
+    _this.config.valueAttrs.type = DATETIME_INPUT_SUPPORT && 'datetime-local' || 'text';
+    if (!DATETIME_INPUT_SUPPORT) _this.config.valueAttrs.placeholder = 'YYYY-MM-DD, HH:MM';
     return _this;
   }
 
-  return PercentType;
-}(_number.default);
+  return DateTimeType;
+}(_string.default);
 
-_defineProperty(PercentType, "priority", 2);
+_defineProperty(DateTimeType, "priority", 2);
 
-_defineProperty(PercentType, "defaultValue", '0%');
+_defineProperty(DateTimeType, "defaultValue", '');
 
-_defineProperty(PercentType, "eval", function (value) {
-  return typeof value === 'string' && value.indexOf('%') !== -1;
+_defineProperty(DateTimeType, "allowEmptyValue", '');
+
+_defineProperty(DateTimeType, "error", function (args) {
+  if (args.prop !== 'value') return args.message || 'Error, Invalid data!';
+  var date = new Date();
+  var format = "".concat(date.hours, ":").concat(date.minutes, "}");
+  return "Invalid time. Time format should match ".concat(format, " (Hour:Minutes)");
 });
 
-var _default = PercentType;
+_defineProperty(DateTimeType, "eval", function (value) {
+  if (!(0, _jsUtils.isStr)(value)) return false;
+  var dateSplit = value.split(':');
+  if (dateSplit.length !== 2) return false;
+  return dateSplit.reduce(function (valid, date) {
+    if (!valid) return valid;
+    return isNaN(parseInt(date)) ? false : valid && date.length === 2;
+  }, true);
+});
+
+var _default = DateTimeType;
 exports.default = _default;

@@ -122,3 +122,14 @@ export const updateValWithSuffix = (update, input, suffix) => {
   }
   else input.value = ''
 }
+
+
+export const checkInputSupport = inputType => {
+  const input = document.createElement('input');
+  input.setAttribute('type', inputType);
+
+  const notAnInputValue = 'not-a-input-value';
+  input.setAttribute('value', notAnInputValue); 
+
+  return (input.value !== notAnInputValue);
+}

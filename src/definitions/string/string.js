@@ -1,6 +1,7 @@
 import CleaveType from '../cleave'
 import { Item } from '../../components'
-import { isStr } from 'jsUtils'
+import { isStr, isFunc } from 'jsUtils'
+import Constants from '../../constants'
 class StringType extends CleaveType {
 
   static priority = 1
@@ -22,12 +23,16 @@ class StringType extends CleaveType {
 
   render = props => {
     const { schema: { id, key, value, mode, matchType, keyType, parent, error } } = props
+    const useValue = mode !== Constants.Schema.MODES.EDIT && isFunc(this.getDisplayValue)
+      ? this.getDisplayValue(value, props)
+      : value
+
     return Item({
       id,
       key,
-      value,
       mode,
       error,
+      value: useValue,
       type: matchType,
       showLabel: true,
       showPaste: props.settings.Editor.hasTemp(),

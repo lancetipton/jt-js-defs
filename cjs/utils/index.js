@@ -17,7 +17,7 @@ require("core-js/modules/es.string.replace");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateValWithSuffix = exports.suffixSelection = exports.updateSuffix = exports.togglePastAction = exports.updateValue = exports.shouldDoDefault = exports.callEditor = exports.addAllowedConfigOpts = exports.addCustomEvents = exports.updateParentConstruct = exports.updateParentHeights = void 0;
+exports.checkInputSupport = exports.updateValWithSuffix = exports.suffixSelection = exports.updateSuffix = exports.togglePastAction = exports.updateValue = exports.shouldDoDefault = exports.callEditor = exports.addAllowedConfigOpts = exports.addCustomEvents = exports.updateParentConstruct = exports.updateParentHeights = void 0;
 
 var _jsUtils = require("jsUtils");
 
@@ -133,3 +133,13 @@ const updateValWithSuffix = (update, input, suffix) => {
 };
 
 exports.updateValWithSuffix = updateValWithSuffix;
+
+const checkInputSupport = inputType => {
+  const input = document.createElement('input');
+  input.setAttribute('type', inputType);
+  const notAnInputValue = 'not-a-input-value';
+  input.setAttribute('value', notAnInputValue);
+  return input.value !== notAnInputValue;
+};
+
+exports.checkInputSupport = checkInputSupport;

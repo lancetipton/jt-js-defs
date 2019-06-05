@@ -13,8 +13,10 @@ import StringType from './definitions/string'
 import CardType from './definitions/string/sub_types/card'
 import ColorType from './definitions/string/sub_types/color'
 import DateType from './definitions/string/sub_types/date'
+import DateTimeType from './definitions/string/sub_types/datetime'
 import EmailType from './definitions/string/sub_types/email'
 import PhoneType from './definitions/string/sub_types/phone'
+import TimeType from './definitions/string/sub_types/time'
 import UrlType from './definitions/string/sub_types/url'
 import UuidType from './definitions/string/sub_types/uuid'
 
@@ -25,6 +27,7 @@ export {
   CollectionType,
   ColorType,
   DateType,
+  DateTimeType,
   EmailType,
   EmptyType,
   FloatType,
@@ -34,6 +37,7 @@ export {
   PercentType,
   PhoneType,
   StringType,
+  TimeType,
   UrlType,
   UuidType,
 }

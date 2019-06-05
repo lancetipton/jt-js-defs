@@ -1,11 +1,14 @@
 import StringType from '../string'
 import { isStr } from 'jsUtils'
+import { checkInputSupport } from '../../../utils'
+
+let DATE_INPUT_SUPPORT
+
 class DateType extends StringType {
 
   static priority = 2
   static defaultValue = ''
   static allowEmptyValue = ''
-  
   static error = args => {
     if(args.prop !== 'value') return args.message || 'Error, Invalid data!'
 
@@ -21,15 +24,16 @@ class DateType extends StringType {
   
   static eval = value => {
     if(!isStr(value)) return false
-    
+
     const dateSplit = value.split('-')
-    if(dateSplit.length !== '3') return false
-    return dateSplit.reduce(valid, date => {
+    if(dateSplit.length !== 3) return false
+
+    return dateSplit.reduce((valid, date) => {
       if(!valid) return valid
 
       return isNaN(parseInt(date))
-      ? false
-      : valid && (date.length === 2 || date.length === 4)
+        ? false
+        : valid && (date.length === 2 || date.length === 4)
     }, true)
   }
 
@@ -39,16 +43,33 @@ class DateType extends StringType {
       cleave: {
         date: true,
         delimiter: '-',
-        datePattern: ['d', 'm', 'Y'],
+        datePattern: ['Y', 'm', 'd'],
         ...(config && config.cleave || {}),
       }
     })
+    
+    if(!DATE_INPUT_SUPPORT && DATE_INPUT_SUPPORT !== false)
+      DATE_INPUT_SUPPORT = checkInputSupport('date')
+    
+    this.config.useCleave = !DATE_INPUT_SUPPORT
+    this.config.valueAttrs.type = DATE_INPUT_SUPPORT && 'date' || 'text'
+    if(!DATE_INPUT_SUPPORT)
+      this.config.valueAttrs.placeholder = 'YYYY-MM-DD'
   }
 
   config = {
-    useCleave: true
+    useCleave: false,
+    valueAttrs: {}
   }
-
+  
+  getDisplayValue = value => {
+    const valSplit = value.split('-').reverse()
+    const temp = valSplit[0]
+    valSplit[0] = valSplit[1]
+    valSplit[1] = temp
+    return valSplit.join('-')
+  }
+  
 }
 
 export default DateType

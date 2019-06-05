@@ -15,6 +15,8 @@ var _components = require("../../components");
 
 var _jsUtils = require("jsUtils");
 
+var _constants = _interopRequireDefault(require("../../constants"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
@@ -44,12 +46,13 @@ class StringType extends _cleave.default {
             keyType = _props$schema.keyType,
             parent = _props$schema.parent,
             error = _props$schema.error;
+      const useValue = mode !== _constants.default.Schema.MODES.EDIT && (0, _jsUtils.isFunc)(this.getDisplayValue) ? this.getDisplayValue(value, props) : value;
       return (0, _components.Item)(_objectSpread({
         id,
         key,
-        value,
         mode,
         error,
+        value: useValue,
         type: matchType,
         showLabel: true,
         showPaste: props.settings.Editor.hasTemp(),

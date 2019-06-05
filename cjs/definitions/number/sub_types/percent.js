@@ -25,8 +25,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-const Values = _constants.default.Values;
-
 class PercentType extends _number.default {
   constructor(config) {
     super(config);
@@ -37,7 +35,7 @@ class PercentType extends _number.default {
 
     _defineProperty(this, "suffix", '%');
 
-    _defineProperty(this, "updateSelection", (e, Editor) => {
+    _defineProperty(this, "updateSelection", e => {
       const input = e.target || e.currentTarget;
       const key = input && input.getAttribute(_constants.default.Values.DATA_SCHEMA_KEY);
       if (!key || !input || !input.value) return;

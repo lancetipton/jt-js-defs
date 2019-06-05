@@ -84,14 +84,14 @@ var getAttrs = function getAttrs(props, type, keyVal, elVal) {
   var classes = "item-data ".concat(_constants.default.Values.EDIT_CLS).concat(configClasses && ' ' + configClasses || '');
   type !== 'key' && props.config.useCleave && (classes += " ".concat(_constants.default.Values.CLEAVE_CLS));
   props.config.isNumber && (classes += " ".concat(_constants.default.Values.NUMBER_CLS));
-  var attrs = type === 'key' ? _objectSpread({}, props.config && props.config.keyAttrs || {}, (_objectSpread2 = {
+  var attrs = type === 'key' ? _objectSpread((_objectSpread2 = {
     "class": classes,
     type: props.keyType || 'text',
     value: keyVal
-  }, _defineProperty(_objectSpread2, _constants.default.Values.DATA_SCHEMA_KEY, type), _defineProperty(_objectSpread2, "name", "key-".concat(props.key)), _defineProperty(_objectSpread2, "disabled", props.disabled), _defineProperty(_objectSpread2, "onClick", props.onClick || !props.onFocus && "this.select()"), _objectSpread2)) : _objectSpread({}, props.config && props.config.valueAttrs || {}, (_objectSpread3 = {
+  }, _defineProperty(_objectSpread2, _constants.default.Values.DATA_SCHEMA_KEY, type), _defineProperty(_objectSpread2, "name", "key-".concat(props.key)), _defineProperty(_objectSpread2, "disabled", props.disabled), _defineProperty(_objectSpread2, "onClick", props.onClick || !props.onFocus && "this.select()"), _objectSpread2), props.config && props.config.keyAttrs || {}) : _objectSpread((_objectSpread3 = {
     "class": classes,
     type: props.valueType || 'text'
-  }, _defineProperty(_objectSpread3, _constants.default.Values.DATA_SCHEMA_KEY, type), _defineProperty(_objectSpread3, "name", "value-".concat(props.key)), _defineProperty(_objectSpread3, "value", elVal), _defineProperty(_objectSpread3, "disabled", props.disabled), _defineProperty(_objectSpread3, "onClick", props.onClick || !props.onFocus && "this.select()"), _objectSpread3)); // Add dom event handlers
+  }, _defineProperty(_objectSpread3, _constants.default.Values.DATA_SCHEMA_KEY, type), _defineProperty(_objectSpread3, "name", "value-".concat(props.key)), _defineProperty(_objectSpread3, "value", elVal), _defineProperty(_objectSpread3, "disabled", props.disabled), _defineProperty(_objectSpread3, "onClick", props.onClick || !props.onFocus && "this.select()"), _objectSpread3), props.config && props.config.valueAttrs || {}); // Add dom event handlers
 
   Object.entries(props).map(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),

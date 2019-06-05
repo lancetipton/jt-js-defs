@@ -12,6 +12,8 @@ require("core-js/modules/es.array.filter");
 
 require("core-js/modules/es.array.iterator");
 
+require("core-js/modules/es.array.join");
+
 require("core-js/modules/es.object.get-own-property-descriptor");
 
 require("core-js/modules/es.object.get-prototype-of");
@@ -41,6 +43,8 @@ var _string = _interopRequireDefault(require("../string"));
 
 var _jsUtils = require("jsUtils");
 
+var _utils = require("../../../utils");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -61,6 +65,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var DATE_INPUT_SUPPORT;
+
 var DateType =
 /*#__PURE__*/
 function (_StringType) {
@@ -75,14 +81,27 @@ function (_StringType) {
       cleave: _objectSpread({
         date: true,
         delimiter: '-',
-        datePattern: ['d', 'm', 'Y']
+        datePattern: ['Y', 'm', 'd']
       }, config && config.cleave || {})
     })));
 
     _defineProperty(_assertThisInitialized(_this), "config", {
-      useCleave: true
+      useCleave: false,
+      valueAttrs: {}
     });
 
+    _defineProperty(_assertThisInitialized(_this), "getDisplayValue", function (value) {
+      var valSplit = value.split('-').reverse();
+      var temp = valSplit[0];
+      valSplit[0] = valSplit[1];
+      valSplit[1] = temp;
+      return valSplit.join('-');
+    });
+
+    if (!DATE_INPUT_SUPPORT && DATE_INPUT_SUPPORT !== false) DATE_INPUT_SUPPORT = (0, _utils.checkInputSupport)('date');
+    _this.config.useCleave = !DATE_INPUT_SUPPORT;
+    _this.config.valueAttrs.type = DATE_INPUT_SUPPORT && 'date' || 'text';
+    if (!DATE_INPUT_SUPPORT) _this.config.valueAttrs.placeholder = 'YYYY-MM-DD';
     return _this;
   }
 
@@ -109,8 +128,8 @@ _defineProperty(DateType, "error", function (args) {
 _defineProperty(DateType, "eval", function (value) {
   if (!(0, _jsUtils.isStr)(value)) return false;
   var dateSplit = value.split('-');
-  if (dateSplit.length !== '3') return false;
-  return dateSplit.reduce(valid, function (date) {
+  if (dateSplit.length !== 3) return false;
+  return dateSplit.reduce(function (valid, date) {
     if (!valid) return valid;
     return isNaN(parseInt(date)) ? false : valid && (date.length === 2 || date.length === 4);
   }, true);

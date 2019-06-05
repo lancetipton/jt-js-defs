@@ -39,6 +39,8 @@ var _components = require("../../components");
 
 var _jsUtils = require("jsUtils");
 
+var _constants = _interopRequireDefault(require("../../constants"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -90,12 +92,13 @@ function (_CleaveType) {
           keyType = _props$schema.keyType,
           parent = _props$schema.parent,
           error = _props$schema.error;
+      var useValue = mode !== _constants.default.Schema.MODES.EDIT && (0, _jsUtils.isFunc)(_this.getDisplayValue) ? _this.getDisplayValue(value, props) : value;
       return (0, _components.Item)(_objectSpread({
         id: id,
         key: key,
-        value: value,
         mode: mode,
         error: error,
+        value: useValue,
         type: matchType,
         showLabel: true,
         showPaste: props.settings.Editor.hasTemp(),

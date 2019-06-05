@@ -29,10 +29,9 @@ const getAttrs = (props, type, keyVal, elVal) => {
   type !== 'key' && props.config.useCleave && (classes += ` ${Constants.Values.CLEAVE_CLS}`)
 
   props.config.isNumber && (classes += ` ${Constants.Values.NUMBER_CLS}`)
-  
+
   const attrs = type === 'key'
     ? {
-      ...(props.config && props.config.keyAttrs || {}),
       class: classes,
       type: props.keyType || 'text',
       value: keyVal,
@@ -40,9 +39,9 @@ const getAttrs = (props, type, keyVal, elVal) => {
       name: `key-${props.key}`,
       disabled: props.disabled,
       onClick: props.onClick || !props.onFocus && `this.select()`,
+      ...(props.config && props.config.keyAttrs || {}),
     }
     : {
-      ...(props.config && props.config.valueAttrs || {}),
       class: classes,
       type: props.valueType || 'text',
       [Constants.Values.DATA_SCHEMA_KEY]: type,
@@ -50,6 +49,7 @@ const getAttrs = (props, type, keyVal, elVal) => {
       value: elVal,
       disabled: props.disabled,
       onClick: props.onClick || !props.onFocus && `this.select()`,
+      ...(props.config && props.config.valueAttrs || {}),
     }
 
   // Add dom event handlers

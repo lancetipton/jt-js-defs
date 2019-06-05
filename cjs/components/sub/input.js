@@ -54,7 +54,7 @@ const getAttrs = (props, type, keyVal, elVal) => {
   let classes = `item-data ${_constants.default.Values.EDIT_CLS}${configClasses && ' ' + configClasses || ''}`;
   type !== 'key' && props.config.useCleave && (classes += ` ${_constants.default.Values.CLEAVE_CLS}`);
   props.config.isNumber && (classes += ` ${_constants.default.Values.NUMBER_CLS}`);
-  const attrs = type === 'key' ? _objectSpread({}, props.config && props.config.keyAttrs || {}, {
+  const attrs = type === 'key' ? _objectSpread({
     "class": classes,
     type: props.keyType || 'text',
     value: keyVal,
@@ -62,16 +62,16 @@ const getAttrs = (props, type, keyVal, elVal) => {
     name: `key-${props.key}`,
     disabled: props.disabled,
     onClick: props.onClick || !props.onFocus && `this.select()`
-  }) : _objectSpread({}, props.config && props.config.valueAttrs || {}, {
+  }, props.config && props.config.keyAttrs || {}) : _objectSpread({
     "class": classes,
     type: props.valueType || 'text',
     [_constants.default.Values.DATA_SCHEMA_KEY]: type,
     name: `value-${props.key}`,
     value: elVal,
     disabled: props.disabled,
-    onClick: props.onClick || !props.onFocus && `this.select()` // Add dom event handlers
+    onClick: props.onClick || !props.onFocus && `this.select()`
+  }, props.config && props.config.valueAttrs || {}); // Add dom event handlers
 
-  });
   Object.entries(props).map(([key, value]) => !attrs[key] && _constants.default.Values.DOM_EVENTS.indexOf(key) !== -1 && (0, _jsUtils.isFunc)(value) && (attrs[key] = value));
   return attrs;
 };

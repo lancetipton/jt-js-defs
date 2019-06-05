@@ -3,8 +3,6 @@ import { Item } from '../../../components'
 import { suffixSelection, updateSuffix } from '../../../utils'
 import Constants from '../../../constants'
 
-const { Values } = Constants
-
 class PercentType extends NumberType {
   
   static priority = 2
@@ -23,7 +21,7 @@ class PercentType extends NumberType {
 
   suffix = '%'
   
-  updateSelection = (e, Editor) => {
+  updateSelection = e => {
     const input =  e.target || e.currentTarget
     const key = input && input.getAttribute(Constants.Values.DATA_SCHEMA_KEY)
     if(!key || !input || !input.value) return

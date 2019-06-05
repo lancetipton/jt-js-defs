@@ -21,6 +21,12 @@ Object.defineProperty(exports, "DateType", {
     return _date.default;
   }
 });
+Object.defineProperty(exports, "DateTimeType", {
+  enumerable: true,
+  get: function get() {
+    return _datetime.default;
+  }
+});
 Object.defineProperty(exports, "EmailType", {
   enumerable: true,
   get: function get() {
@@ -31,6 +37,12 @@ Object.defineProperty(exports, "PhoneType", {
   enumerable: true,
   get: function get() {
     return _phone.default;
+  }
+});
+Object.defineProperty(exports, "TimeType", {
+  enumerable: true,
+  get: function get() {
+    return _time.default;
   }
 });
 Object.defineProperty(exports, "UrlType", {
@@ -52,9 +64,13 @@ var _color = _interopRequireDefault(require("./color"));
 
 var _date = _interopRequireDefault(require("./date"));
 
+var _datetime = _interopRequireDefault(require("./datetime"));
+
 var _email = _interopRequireDefault(require("./email"));
 
 var _phone = _interopRequireDefault(require("./phone"));
+
+var _time = _interopRequireDefault(require("./time"));
 
 var _url = _interopRequireDefault(require("./url"));
 
