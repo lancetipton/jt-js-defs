@@ -1,5 +1,5 @@
 import StringType from '../string'
-import { isStr } from 'jsUtils'
+import { isStr } from 'jsutils'
 
 class PhoneType extends StringType {
 

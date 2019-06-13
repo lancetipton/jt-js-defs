@@ -13,7 +13,7 @@ exports.default = void 0;
 
 var _string = _interopRequireDefault(require("../string"));
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -45,7 +45,7 @@ _defineProperty(PhoneType, "defaultValue", '');
 _defineProperty(PhoneType, "allowEmptyValue", '');
 
 _defineProperty(PhoneType, "eval", value => {
-  if (!(0, _jsUtils.isStr)(value)) return false;
+  if (!(0, _jsutils.isStr)(value)) return false;
   const regex = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
   return Boolean(regex.test(value.replace(/\D/g, '')));
 });

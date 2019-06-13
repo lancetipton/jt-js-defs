@@ -45,7 +45,7 @@ var _base = _interopRequireDefault(require("../base"));
 
 var _cleave = _interopRequireDefault(require("cleave.js"));
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../../constants"));
 
@@ -147,7 +147,7 @@ function (_BaseType) {
       _this.cleave.destroy();
 
       _this.cleave = undefined;
-      rmOpts && (0, _jsUtils.clearObj)(_this.cleaveOpts);
+      rmOpts && (0, _jsutils.clearObj)(_this.cleaveOpts);
     });
 
     _defineProperty(_assertThisInitialized(_this), "componentDidUpdate", function (props, Editor) {
@@ -165,7 +165,7 @@ function (_BaseType) {
 
       _this.original = original; // Clear out the updated, because we just updated
 
-      _this.updated && (0, _jsUtils.clearObj)(_this.updated);
+      _this.updated && (0, _jsutils.clearObj)(_this.updated);
     });
 
     _defineProperty(_assertThisInitialized(_this), "componentWillUnmount", function (Editor) {

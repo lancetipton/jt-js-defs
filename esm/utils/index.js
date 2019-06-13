@@ -41,7 +41,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.checkInputSupport = exports.updateValWithSuffix = exports.suffixSelection = exports.updateSuffix = exports.togglePastAction = exports.updateValue = exports.shouldDoDefault = exports.callEditor = exports.addAllowedConfigOpts = exports.addCustomEvents = exports.updateParentConstruct = exports.updateParentHeights = void 0;
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../constants"));
 
@@ -93,7 +93,7 @@ exports.updateParentConstruct = updateParentConstruct;
 
 var addCustomEvents = function addCustomEvents(config, userEvents) {
   return Object.keys(_constants.default.Values.CUSTOM_EVENTS).map(function (key) {
-    return userEvents[key] = (0, _jsUtils.isFunc)(config[key]) && config[key] || _constants.default.Values.CUSTOM_EVENTS[key];
+    return userEvents[key] = (0, _jsutils.isFunc)(config[key]) && config[key] || _constants.default.Values.CUSTOM_EVENTS[key];
   });
 };
 
@@ -148,7 +148,7 @@ exports.togglePastAction = togglePastAction;
 
 var updateSuffix = function updateSuffix(value, suffix, remove) {
   if (!value && value !== 0) return;
-  value = !(0, _jsUtils.isStr)(value) && "".concat(value) || value;
+  value = !(0, _jsutils.isStr)(value) && "".concat(value) || value;
   var cleanVal = value.replace(/\D/g, '');
   cleanVal = cleanVal.length && value[0] === '-' ? "-".concat(cleanVal) : cleanVal;
   return remove ? cleanVal : cleanVal && cleanVal.length && "".concat(cleanVal).concat(suffix) || '';

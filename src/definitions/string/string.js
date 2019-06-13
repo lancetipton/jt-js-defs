@@ -1,6 +1,6 @@
 import CleaveType from '../cleave'
 import { Item } from '../../components'
-import { isStr, isFunc } from 'jsUtils'
+import { isStr, isFunc } from 'jsutils'
 import Constants from '../../constants'
 class StringType extends CleaveType {
 

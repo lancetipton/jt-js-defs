@@ -1,6 +1,6 @@
 import BaseType from '../base'
 import { updateParentHeights, } from '../../utils'
-import { clearObj } from 'jsUtils'
+import { clearObj } from 'jsutils'
 import Constants from '../../constants'
 import { List } from '../../components'
 

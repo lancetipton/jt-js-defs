@@ -13,7 +13,7 @@ var _cleave = _interopRequireDefault(require("../cleave"));
 
 var _components = require("../../components");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../../constants"));
 
@@ -46,7 +46,7 @@ class StringType extends _cleave.default {
             keyType = _props$schema.keyType,
             parent = _props$schema.parent,
             error = _props$schema.error;
-      const useValue = mode !== _constants.default.Schema.MODES.EDIT && (0, _jsUtils.isFunc)(this.getDisplayValue) ? this.getDisplayValue(value, props) : value;
+      const useValue = mode !== _constants.default.Schema.MODES.EDIT && (0, _jsutils.isFunc)(this.getDisplayValue) ? this.getDisplayValue(value, props) : value;
       return (0, _components.Item)(_objectSpread({
         id,
         key,
@@ -68,7 +68,7 @@ class StringType extends _cleave.default {
 
 _defineProperty(StringType, "priority", 1);
 
-_defineProperty(StringType, "eval", value => (0, _jsUtils.isStr)(value));
+_defineProperty(StringType, "eval", value => (0, _jsutils.isStr)(value));
 
 _defineProperty(StringType, "defaultValue", (newType, schema, settings) => '');
 

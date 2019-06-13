@@ -1,6 +1,6 @@
 import { elements } from 'elementR'
 import { Icon } from './icon'
-import { capitalize } from 'jsUtils'
+import { capitalize } from 'jsutils'
 import Constants from '../../constants'
 import { selectWrapper, inputWrapper } from '../sub'
 

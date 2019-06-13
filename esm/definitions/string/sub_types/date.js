@@ -41,7 +41,7 @@ exports.default = void 0;
 
 var _string = _interopRequireDefault(require("../string"));
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _utils = require("../../../utils");
 
@@ -126,7 +126,7 @@ _defineProperty(DateType, "error", function (args) {
 });
 
 _defineProperty(DateType, "eval", function (value) {
-  if (!(0, _jsUtils.isStr)(value)) return false;
+  if (!(0, _jsutils.isStr)(value)) return false;
   var dateSplit = value.split('-');
   if (dateSplit.length !== 3) return false;
   return dateSplit.reduce(function (valid, date) {

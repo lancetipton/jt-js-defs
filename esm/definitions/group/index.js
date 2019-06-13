@@ -43,7 +43,7 @@ var _base = _interopRequireDefault(require("../base"));
 
 var _utils = require("../../utils");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../../constants"));
 
@@ -162,7 +162,7 @@ function (_BaseType) {
       _this.setOriginal(schema); // Clear out the updated, because the instance just updated
 
 
-      _this.updated && (0, _jsUtils.clearObj)(_this.updated); // ----- height update ----- //
+      _this.updated && (0, _jsutils.clearObj)(_this.updated); // ----- height update ----- //
       // If no comp || not open, just return
 
       var refNode = schema.domNode;

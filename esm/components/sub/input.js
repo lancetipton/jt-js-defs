@@ -43,7 +43,7 @@ var _elementR = require("elementR");
 
 var _label = require("./label");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -80,7 +80,7 @@ var getValue = function getValue(val, text) {
 var getAttrs = function getAttrs(props, type, keyVal, elVal) {
   var _objectSpread2, _objectSpread3;
 
-  var configClasses = type === 'key' ? (0, _jsUtils.get)(props, 'config.keyAttrs.classes') : (0, _jsUtils.get)(props, 'config.valueAttrs.classes');
+  var configClasses = type === 'key' ? (0, _jsutils.get)(props, 'config.keyAttrs.classes') : (0, _jsutils.get)(props, 'config.valueAttrs.classes');
   var classes = "item-data ".concat(_constants.default.Values.EDIT_CLS).concat(configClasses && ' ' + configClasses || '');
   type !== 'key' && props.config.useCleave && (classes += " ".concat(_constants.default.Values.CLEAVE_CLS));
   props.config.isNumber && (classes += " ".concat(_constants.default.Values.NUMBER_CLS));
@@ -98,7 +98,7 @@ var getAttrs = function getAttrs(props, type, keyVal, elVal) {
         key = _ref2[0],
         value = _ref2[1];
 
-    return !attrs[key] && _constants.default.Values.DOM_EVENTS.indexOf(key) !== -1 && (0, _jsUtils.isFunc)(value) && (attrs[key] = value);
+    return !attrs[key] && _constants.default.Values.DOM_EVENTS.indexOf(key) !== -1 && (0, _jsutils.isFunc)(value) && (attrs[key] = value);
   });
   return attrs;
 };
@@ -121,7 +121,7 @@ var inputWrapper = function inputWrapper(props, children) {
   if (type) classes += " item-".concat(type, "-wrapper");
   return _elementR.elements.div(_objectSpread({}, attrs, {
     className: classes
-  }), showLabel && (0, _label.label)(type, (0, _jsUtils.capitalize)(type)), children);
+  }), showLabel && (0, _label.label)(type, (0, _jsutils.capitalize)(type)), children);
 };
 /**
  * Builds an input object based on passed in params

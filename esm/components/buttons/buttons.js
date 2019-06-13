@@ -37,7 +37,7 @@ var _elementR = require("elementR");
 
 var _icon2 = require("./icon");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../../constants"));
 
@@ -106,7 +106,7 @@ var typeLabel = function typeLabel(type) {
     className: "type-label"
   }, span({
     className: "type-text ".concat(type, "-text")
-  }, "( ".concat((0, _jsUtils.capitalize)(type), " )")));
+  }, "( ".concat((0, _jsutils.capitalize)(type), " )")));
 };
 
 var showTypeValue = function showTypeValue(props, type) {
@@ -119,7 +119,7 @@ var showTypeValue = function showTypeValue(props, type) {
     return option({
       value: value,
       selected: props.matchType === value
-    }, (0, _jsUtils.capitalize)(value));
+    }, (0, _jsutils.capitalize)(value));
   });
   options.unshift(option({
     selected: !props.matchType

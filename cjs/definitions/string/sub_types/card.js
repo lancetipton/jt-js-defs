@@ -13,7 +13,7 @@ exports.default = void 0;
 
 var _string = _interopRequireDefault(require("../string"));
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -56,7 +56,7 @@ _defineProperty(CardType, "priority", 2);
 
 _defineProperty(CardType, "defaultValue", '');
 
-_defineProperty(CardType, "eval", value => (0, _jsUtils.isStr)(value) && luhn(value.replace(/ /g, '')));
+_defineProperty(CardType, "eval", value => (0, _jsutils.isStr)(value) && luhn(value.replace(/ /g, '')));
 
 _defineProperty(CardType, "error", args => {
   if (args.prop !== 'value') return args.message || 'Error, Invalid data!';

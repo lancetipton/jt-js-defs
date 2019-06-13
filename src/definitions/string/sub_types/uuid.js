@@ -1,5 +1,5 @@
 import StringType from '../string'
-import { isStr } from 'jsUtils'
+import { isStr } from 'jsutils'
 class UuidType extends StringType {
 
   static priority = 2

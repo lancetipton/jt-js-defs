@@ -1,6 +1,6 @@
 import { Buttons } from './buttons'
 import { elements } from 'elementR'
-import { isFunc } from 'jsUtils'
+import { isFunc } from 'jsutils'
 import Constants from '../constants'
 import * as subComps from './sub'
 import { errorMessage } from './error'

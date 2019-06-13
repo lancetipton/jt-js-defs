@@ -17,7 +17,7 @@ var _elementR = require("elementR");
 
 var _icon = require("./icon");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../../constants"));
 
@@ -67,7 +67,7 @@ const typeLabel = type => div({
   className: `type-label`
 }, span({
   className: `type-text ${type}-text`
-}, `( ${(0, _jsUtils.capitalize)(type)} )`));
+}, `( ${(0, _jsutils.capitalize)(type)} )`));
 
 const showTypeValue = (props, type) => {
   if (type !== _constants.default.Schema.EMPTY || !props.Types) return typeLabel(type);
@@ -76,7 +76,7 @@ const showTypeValue = (props, type) => {
   })).map(value => option({
     value,
     selected: props.matchType === value
-  }, (0, _jsUtils.capitalize)(value)));
+  }, (0, _jsutils.capitalize)(value)));
   options.unshift(option({
     selected: !props.matchType
   }, 'Select Type...'));

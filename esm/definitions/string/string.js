@@ -37,7 +37,7 @@ var _cleave = _interopRequireDefault(require("../cleave"));
 
 var _components = require("../../components");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../../constants"));
 
@@ -92,7 +92,7 @@ function (_CleaveType) {
           keyType = _props$schema.keyType,
           parent = _props$schema.parent,
           error = _props$schema.error;
-      var useValue = mode !== _constants.default.Schema.MODES.EDIT && (0, _jsUtils.isFunc)(_this.getDisplayValue) ? _this.getDisplayValue(value, props) : value;
+      var useValue = mode !== _constants.default.Schema.MODES.EDIT && (0, _jsutils.isFunc)(_this.getDisplayValue) ? _this.getDisplayValue(value, props) : value;
       return (0, _components.Item)(_objectSpread({
         id: id,
         key: key,
@@ -118,7 +118,7 @@ function (_CleaveType) {
 _defineProperty(StringType, "priority", 1);
 
 _defineProperty(StringType, "eval", function (value) {
-  return (0, _jsUtils.isStr)(value);
+  return (0, _jsutils.isStr)(value);
 });
 
 _defineProperty(StringType, "defaultValue", function (newType, schema, settings) {

@@ -9,7 +9,7 @@ var _buttons = require("../buttons");
 
 var _elementR = require("elementR");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../../constants"));
 
@@ -56,7 +56,7 @@ const buildHeaderValue = props => {
   const mode = props.mode,
         type = props.type,
         config = props.config;
-  const typeName = (0, _jsUtils.capitalize)(type);
+  const typeName = (0, _jsutils.capitalize)(type);
   if (mode !== _constants.default.Schema.MODES.EDIT) return div({
     className: 'item-value item-data'
   }, typeName);

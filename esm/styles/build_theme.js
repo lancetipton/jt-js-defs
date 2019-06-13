@@ -37,7 +37,7 @@ exports.updateTheme = exports.buildTheme = void 0;
 
 var _theme = require("./theme");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -423,8 +423,8 @@ exports.updateTheme = setTheme;
 
 var buildTheme = function buildTheme(settings) {
   var builtTheme = (0, _theme.getTheme)();
-  var useTheme = settings.theme ? (0, _jsUtils.deepMerge)(builtTheme, settings.theme) : builtTheme;
-  var useStyles = settings.styles ? (0, _jsUtils.deepMerge)(base, settings.styles) : base;
+  var useTheme = settings.theme ? (0, _jsutils.deepMerge)(builtTheme, settings.theme) : builtTheme;
+  var useStyles = settings.styles ? (0, _jsutils.deepMerge)(base, settings.styles) : base;
 
   var filled = _objectSpread({}, fillStyles(useTheme, useStyles));
 

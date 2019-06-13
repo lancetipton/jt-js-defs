@@ -1,6 +1,6 @@
 import BaseType from '../base'
 import Cleave from 'cleave.js'
-import { clearObj } from 'jsUtils'
+import { clearObj } from 'jsutils'
 import Constants from '../../constants'
 
 const getCleaveEl = (Editor, id) => {

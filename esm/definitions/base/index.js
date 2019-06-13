@@ -29,7 +29,7 @@ var _build_theme = require("../../styles/build_theme");
 
 var _constants = _interopRequireDefault(require("../../constants"));
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _utils = require("../../utils");
 
@@ -194,7 +194,7 @@ var BaseType = function BaseType(config, _Editor) {
     _this.setOriginal(props.schema); // Clear out the updated, because the component just updated
 
 
-    _this.updated && (0, _jsUtils.clearObj)(_this.updated);
+    _this.updated && (0, _jsutils.clearObj)(_this.updated);
   });
 
   _defineProperty(this, "shouldComponentUpdate", function (params) {

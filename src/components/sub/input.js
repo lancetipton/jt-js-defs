@@ -1,7 +1,7 @@
 import Constants from '../../constants'
 import { elements } from 'elementR'
 import { label } from './label'
-import { capitalize, isFunc, get } from 'jsUtils'
+import { capitalize, isFunc, get } from 'jsutils'
 
 const { Values } = Constants
 

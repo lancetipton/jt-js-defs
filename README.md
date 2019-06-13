@@ -1,4 +1,4 @@
-# jTree Javascript Definitions
+# jtree Javascript Definitions
 
 Standard class definitions for JTree Types
 
@@ -17,17 +17,17 @@ Standard class definitions for JTree Types
   * Add to your code
     ```js
       // * Import into code
-        import jTreeDefs from 'jTDefs'
+        import jtreeDefs from 'jtree-definitions'
 
 
       // * Or require code
-        const jTreeDefs = require('jTreeDefs')
+        const jtreeDefs = require('jtree-definitions')
       
       // * Add as html script
-        <script src='/path/to/js-utils/build/jTreeDefs.min.js'></script>
-        // jsUtils will be available on the window 
+        <script src='/path/to/js-utils/build/jtree-definitions.js'></script>
+        // jsutils will be available on the window 
         <script>
-          const jTreeDefs = window.jTreeDefs
+          const jtreeDefs = window.jtreeDefs
           
         </script>
     ```

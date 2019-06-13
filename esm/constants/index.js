@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _schema = require("./schema");
 
@@ -27,16 +27,16 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var useValues = (0, _jsUtils.deepFreeze)(_objectSpread({}, _values.Values));
+var useValues = (0, _jsutils.deepFreeze)(_objectSpread({}, _values.Values));
 
 var updateDefValues = function updateDefValues(update) {
-  return useValues = (0, _jsUtils.deepFreeze)(_objectSpread({}, useValues, update));
+  return useValues = (0, _jsutils.deepFreeze)(_objectSpread({}, useValues, update));
 };
 
-var useSchema = (0, _jsUtils.deepFreeze)(_objectSpread({}, _schema.Schema));
+var useSchema = (0, _jsutils.deepFreeze)(_objectSpread({}, _schema.Schema));
 
 var updateDefSchema = function updateDefSchema(update) {
-  return useSchema = (0, _jsUtils.deepFreeze)(_objectSpread({}, useSchema, update));
+  return useSchema = (0, _jsutils.deepFreeze)(_objectSpread({}, useSchema, update));
 };
 
 var Constants = {

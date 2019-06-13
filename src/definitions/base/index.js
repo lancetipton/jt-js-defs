@@ -1,6 +1,6 @@
 import { buildTheme } from '../../styles/build_theme'
 import Constants from '../../constants'
-import { clearObj } from 'jsUtils'
+import { clearObj } from 'jsutils'
 import { 
   updateParentConstruct,
   addCustomEvents,

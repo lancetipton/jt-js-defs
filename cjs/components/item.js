@@ -9,7 +9,7 @@ var _buttons = require("./buttons");
 
 var _elementR = require("elementR");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../constants"));
 
@@ -68,7 +68,7 @@ const buildItemValue = (itemProps, props) => {
         elValue = itemProps.elValue,
         children = itemProps.children;
   if (props && props.type === _constants.default.Schema.EMPTY) valueAttrs.disabled = true;
-  const valEl = El(valueAttrs, (0, _jsUtils.isFunc)(children) && children(itemProps) || elValue);
+  const valEl = El(valueAttrs, (0, _jsutils.isFunc)(children) && children(itemProps) || elValue);
   return !showLabel ? valEl : div({
     className: 'item-data-wrapper item-value-wrapper'
   }, subComps.label(valueAttrs.name, 'Value'), valEl);

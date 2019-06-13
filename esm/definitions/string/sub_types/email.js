@@ -27,7 +27,7 @@ exports.default = void 0;
 
 var _string = _interopRequireDefault(require("../string"));
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -73,7 +73,7 @@ _defineProperty(EmailType, "error", function (args) {
 });
 
 _defineProperty(EmailType, "eval", function (value) {
-  if (!value || !(0, _jsUtils.isStr)(value) || value.indexOf('@') === -1 || value.indexOf('.') === -1) return false;
+  if (!value || !(0, _jsutils.isStr)(value) || value.indexOf('@') === -1 || value.indexOf('.') === -1) return false;
   var regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   return Boolean(regex.test(value));
 });

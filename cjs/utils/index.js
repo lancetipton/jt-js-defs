@@ -19,7 +19,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.checkInputSupport = exports.updateValWithSuffix = exports.suffixSelection = exports.updateSuffix = exports.togglePastAction = exports.updateValue = exports.shouldDoDefault = exports.callEditor = exports.addAllowedConfigOpts = exports.addCustomEvents = exports.updateParentConstruct = exports.updateParentHeights = void 0;
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../constants"));
 
@@ -54,7 +54,7 @@ const updateParentConstruct = (config, parent) => {
 
 exports.updateParentConstruct = updateParentConstruct;
 
-const addCustomEvents = (config, userEvents) => Object.keys(_constants.default.Values.CUSTOM_EVENTS).map(key => userEvents[key] = (0, _jsUtils.isFunc)(config[key]) && config[key] || _constants.default.Values.CUSTOM_EVENTS[key]);
+const addCustomEvents = (config, userEvents) => Object.keys(_constants.default.Values.CUSTOM_EVENTS).map(key => userEvents[key] = (0, _jsutils.isFunc)(config[key]) && config[key] || _constants.default.Values.CUSTOM_EVENTS[key]);
 
 exports.addCustomEvents = addCustomEvents;
 
@@ -101,7 +101,7 @@ exports.togglePastAction = togglePastAction;
 
 const updateSuffix = (value, suffix, remove) => {
   if (!value && value !== 0) return;
-  value = !(0, _jsUtils.isStr)(value) && `${value}` || value;
+  value = !(0, _jsutils.isStr)(value) && `${value}` || value;
   let cleanVal = value.replace(/\D/g, '');
   cleanVal = cleanVal.length && value[0] === '-' ? `-${cleanVal}` : cleanVal;
   return remove ? cleanVal : cleanVal && cleanVal.length && `${cleanVal}${suffix}` || '';

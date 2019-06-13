@@ -11,7 +11,6 @@ const outputPath = path.resolve(__dirname, buildPath)
 const paths = [ './build' ]
 const WebpackShellPlugin = require('webpack-shell-plugin');
 
-
 const plugins = [
   new CleanWebpackPlugin(paths, {}),
   new WebpackShellPlugin({
@@ -20,6 +19,7 @@ const plugins = [
     dev: false
   })
 ]
+
 process.env.ANAL && plugins.push(new BundleAnalyzerPlugin())
 
 module.exports = {

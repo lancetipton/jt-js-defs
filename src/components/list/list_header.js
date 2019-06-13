@@ -1,6 +1,6 @@
 import { Buttons, Icon } from '../buttons'
 import { elements } from 'elementR'
-import { capitalize } from 'jsUtils'
+import { capitalize } from 'jsutils'
 import Constants from '../../constants'
 import * as subComps from '../sub'
 import { errorMessage } from '../error'

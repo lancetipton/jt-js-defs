@@ -17,7 +17,7 @@ var _base = _interopRequireDefault(require("../base"));
 
 var _utils = require("../../utils");
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 var _constants = _interopRequireDefault(require("../../constants"));
 
@@ -112,7 +112,7 @@ class GroupType extends _base.default {
       const schema = props.schema;
       this.setOriginal(schema); // Clear out the updated, because the instance just updated
 
-      this.updated && (0, _jsUtils.clearObj)(this.updated); // ----- height update ----- //
+      this.updated && (0, _jsutils.clearObj)(this.updated); // ----- height update ----- //
       // If no comp || not open, just return
 
       const refNode = schema.domNode;

@@ -11,7 +11,7 @@ exports.default = void 0;
 
 var _string = _interopRequireDefault(require("../string"));
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -51,7 +51,7 @@ _defineProperty(UuidType, "error", args => {
 });
 
 _defineProperty(UuidType, "eval", value => {
-  if (!value || !(0, _jsUtils.isStr)(value)) return false;
+  if (!value || !(0, _jsutils.isStr)(value)) return false;
   const regex = /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i;
   return regex.test(value);
 });

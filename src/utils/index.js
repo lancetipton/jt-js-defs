@@ -1,4 +1,4 @@
-import { isFunc, isStr } from 'jsUtils'
+import { isFunc, isStr } from 'jsutils'
 import Constants from '../constants'
 
 /**

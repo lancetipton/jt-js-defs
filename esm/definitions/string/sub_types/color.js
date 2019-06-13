@@ -35,7 +35,7 @@ exports.default = void 0;
 
 var _string = _interopRequireDefault(require("../string"));
 
-var _jsUtils = require("jsUtils");
+var _jsutils = require("jsutils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -97,7 +97,7 @@ _defineProperty(ColorType, "error", function (args) {
 });
 
 _defineProperty(ColorType, "eval", function (value) {
-  if (!value || !(0, _jsUtils.isStr)(value)) return false;
+  if (!value || !(0, _jsutils.isStr)(value)) return false;
   return Boolean(/^#(?:(?:[A-F0-9]{2}){3,4}|[A-F0-9]{3})$/i.test(value));
 });
 
