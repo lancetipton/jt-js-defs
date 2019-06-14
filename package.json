@@ -1,6 +1,6 @@
 {
   "name": "jtree-definitions",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "common javascript utils",
   "main": "cjs/",
   "module": "esm/",
@@ -20,15 +20,15 @@
     "build:esm": "babel --delete-dir-on-start -d esm/ src/",
     "build:cjs": "babel --delete-dir-on-start --env-name cjs -d cjs/ src/",
     "build:modules": "yarn build:esm && yarn build:cjs",
-    "build:webpack": "rm -rf ./build && ENV=production webpack --mode production",
-    "clean": "rm -rf yarn.lock && rm -rf node_modules && yarn install --force",
-    "dev": "yarn build:clean && ENV=development webpack --watch --progress",
-    "test": "NODE_ENV=test jest --verbose",
-    "postinstall": "postinstall-build build"
+    "build:webpack": "rm -rf ./build && NODE_ENV=production webpack --mode production",
+    "clean": "rm -rf yarn.lock && rm -rf node_modules",
+    "dev": "yarn build:clean && NODE_ENV=development webpack --watch --progress",
+    "test": "NODE_ENV=test jest --verbose"
   },
   "dependencies": {
-    "postinstall-build": "^5.0.3",
-    "webpack-shell-plugin": "https://github.com/cdeutsch/webpack-shell-plugin.git#bee537d"
+    "webpack-shell-plugin": "https://github.com/cdeutsch/webpack-shell-plugin.git#bee537d",
+    "elementR": "git+https://github.com/lancetipton/Element-R.git",
+    "jsutils": "git+https://github.com/lancetipton/jsutils.git"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -47,11 +47,9 @@
     "compression-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "core-js": "^3.1.2",
-    "elementR": "git+https://github.com/lancetipton/Element-R.git",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.7.1",
-    "jsutils": "git+https://github.com/lancetipton/jsutils.git",
     "raw-loader": "^2.0.0",
     "remove-comments-loader": "^0.1.2",
     "rimraf": "^2.6.3",

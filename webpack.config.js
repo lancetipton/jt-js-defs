@@ -14,7 +14,6 @@ const WebpackShellPlugin = require('webpack-shell-plugin');
 const plugins = [
   new CleanWebpackPlugin(paths, {}),
   new WebpackShellPlugin({
-    // onBuildStart: [ 'yarn build:modules' ],
     onBuildEnd: [ 'yarn build:modules' ],
     dev: false
   })
