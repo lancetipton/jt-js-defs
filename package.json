@@ -1,10 +1,10 @@
 {
-  "name": "jtree-definitions",
+  "name": "jt-js-defs",
   "version": "1.2.0",
   "description": "common javascript utils",
   "main": "cjs/",
   "module": "esm/",
-  "repository": "https://github.com/lancetipton/jtree-definitions.git",
+  "repository": "https://github.com/lancetipton/jt-js-defs.git",
   "author": "lancetipton <lancetipton04@gmail.com>",
   "license": "MIT",
   "browserslist": [
