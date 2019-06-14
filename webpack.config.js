@@ -1,7 +1,7 @@
 const path = require('path')
-const CleanWebpackPlugin = require('./node_modules/clean-webpack-plugin')
-const TerserPlugin = require('./node_modules/terser-webpack-plugin/dist/cjs')
-const BundleAnalyzerPlugin = require('./node_modules/webpack-bundle-analyzer/lib').BundleAnalyzerPlugin;
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin/dist/cjs')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer/lib').BundleAnalyzerPlugin
 const libraryName = 'jt-js-defs'
 const NODE_ENV = process.env.NODE_ENV
 const isDev = NODE_ENV === 'development'
